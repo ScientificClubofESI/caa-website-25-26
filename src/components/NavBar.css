@@ -1,0 +1,68 @@
+.NavBar{
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    font-size: larger;
+    background: transparent;
+}
+.NavBar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+.NavBar .nav-links {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}   
+.caaLogo{
+   
+    margin-left: 10px;
+    flex: 0 0 64px;
+}
+.caaLogo img{
+    
+     width: 64px;
+    height: 64px;
+}
+.registerBtn{
+    padding: 10px 20px;
+    background-color: #759451;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.hamMenu{
+    cursor: pointer;
+}
+
+.nav-links-toggled{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    will-change: drop;
+    animation: drop 0.2s ease-in-out;
+}
+@keyframes drop {
+    from {
+        height: 0px;
+    }
+    to{
+        height: 300px;
+    }
+}
+.nav-links-toggled a{
+    font-size: larger;
+}

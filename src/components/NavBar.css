@@ -3,11 +3,12 @@
     position: sticky;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
+    padding: 20px;  
+    background-color: white;
+   
+    color: black;
     font-size: larger;
-    background: transparent;
+    
 }
 .NavBar .logo {
     font-size: 24px;
@@ -19,14 +20,13 @@
     justify-content: space-between;
 }   
 .caaLogo{
-   
     margin-left: 10px;
     flex: 0 0 64px;
 }
 .caaLogo img{
     
      width: 64px;
-    height: 64px;
+    
 }
 .registerBtn{
     padding: 10px 20px;
@@ -44,23 +44,31 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    height: 300px;
+    font-weight: 500;
+    align-items: center;
+    height: 402px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 100%;
     justify-content: space-evenly;
     padding: 10px;
-    background-color: white;
+    
     color: black;
     will-change: drop;
     animation: drop 0.2s ease-in-out;
+    background-color: #D9F3B9;
+    background-image: url("/Dots.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
 }
 @keyframes drop {
     from {
         height: 0px;
     }
     to{
-        height: 300px;
+        height: 402px;
     }
 }
 .nav-links-toggled a{

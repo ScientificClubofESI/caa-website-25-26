@@ -1,6 +1,6 @@
 export default function Wilaya() {
   return (
-    <section>
+    <section id="wilayas">
       <h1 className="text-4xl font-bold">
         Hello, this is the Wilaya section
       </h1>

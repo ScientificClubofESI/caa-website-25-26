@@ -7,7 +7,7 @@
   --secondary-100: #D9F3B9;
   --secondary-800: #759451;
   --secondary-500: #ACD47C;
-  --background-light: #FBF9F7;
+  --white-light: #FBF9F7;
 }
 
 @theme inline {
@@ -18,7 +18,7 @@
   --color-secondary-100: var(--secondary-100);
   --color-secondary-800: var(--secondary-800);
   --color-secondary-500: var(--secondary-950);
-  --color-background-light: var(--background-light)
+  --color-white-light: var(--white-light)
 }
 
 @media (prefers-color-scheme: dark) {

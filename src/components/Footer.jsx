@@ -36,7 +36,7 @@ export default function Footer() {
 
   return (
     <footer className=" p-9 md:p-14 mt-10  items-start  h-full bg-secondary-950/83 bg-[url('/paperTexture.jpg')] bg-blend-multiply bg-cover">
-      <div className=" text-xl flex-col   md:flex-row flex justify-between items-start gap-14 text-white  w-full h-full  font-bold">
+      <div className=" text-xl flex-col   md:flex-row flex justify-between items-start gap-14 text-white-light  w-full h-full  font-bold">
         <div className="flex justify-start  flex-col gap-6">
           <div className="flex flex-row items-center md:items-start md:flex-col gap-5 ">
             <div className="flex justify-start  gap-2 items-center w-52">
@@ -70,7 +70,7 @@ export default function Footer() {
                 return (
                   <li
                     key={social.id}
-                    className="border-2 p-2.5  rounded-full w-10 h-10 flex justify-center items-center border-background-light/80 border-dashed"
+                    className="border-2 p-2.5  rounded-full w-10 h-10 flex justify-center items-center border-white-light/80 border-dashed"
                   >
                     {" "}
                     <Link href={social.link}>
@@ -94,7 +94,7 @@ export default function Footer() {
               return (
                 <li
                   key={linkItem.title}
-                  className="font-light text-background-light/90 capitalize"
+                  className="font-light text-white-light/90 capitalize"
                 >
                   <Link href={linkItem.link}>{linkItem.title}</Link>
                 </li>
@@ -109,7 +109,7 @@ export default function Footer() {
               return (
                 <li
                   key={item.title}
-                  className="font-light  text-xl text-background-light/90"
+                  className="font-light  text-xl text-white-light/90"
                 >
                   <span className="capitalize">{item.title}:</span>{" "}
                   <span className="font-bold capitalize">{item.detail}</span>
@@ -121,7 +121,7 @@ export default function Footer() {
         <div className="flex flex-row  items-center md:items-start  md:flex-col  justify-start gap-7 w-full md:w-[15%]">
           <div className="w-[50%] md:w-full">
             <h3 className="capitalize ">join now </h3>
-            <p className="font-light text-background-light/70 text-[18px] first-letter:uppercase ">
+            <p className="font-light text-white-light/70 text-[18px] first-letter:uppercase ">
               ready to make an impact? register now !
             </p>
           </div>
@@ -156,7 +156,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="w-full h-full my-5 flex justify-center items-center">
-          <p className="capitalize  text-center text-background-light/50 font-medium ">
+          <p className="capitalize  text-center text-white-light/50 font-medium ">
             Copyright © 2026 Club Scientifique de l’ESI. All rights
             reserved{" "}
           </p>

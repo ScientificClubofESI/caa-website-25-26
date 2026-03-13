@@ -132,8 +132,36 @@ export default function Footer() {
           </Link>
         </div>
       </div>
+
       {/* div  copyright  */}
-      <div></div>
+      <div>
+        <div className="arrowup flex p-3 justify-end items-end  w-full  border-b-2 border-dashed border-secondary-100/40  ">
+          <div className="w-20 h-20 hidden md:self-end border-secondary-100/70 border-dashed md:flex justify-center items-center  border-2 p-2 rounded-full">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#d9f3b9"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5l0 14" />
+              <path d="M18 11l-6 -6" />
+              <path d="M6 11l6 -6" />
+            </svg>
+          </div>
+        </div>
+        <div className="w-full h-full my-5 flex justify-center items-center">
+          <p className="capitalize text-background-light/80 font-medium ">
+            Copyright © 2026 Club Scientifique de l’ESI. All rights
+            reserved{" "}
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }

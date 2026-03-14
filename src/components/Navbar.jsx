@@ -2,7 +2,7 @@
 import "./NavBar.css"
 import { useEffect, useState } from "react";
 export default function Navbar() {
-  const [dropMenu , setDropMenu] = useState(false)
+
   const [mobileView , setMobileView] = useState(false)
   const [toggle , setToggel] = useState(false)
 
@@ -10,6 +10,9 @@ export default function Navbar() {
   useEffect(()=>{
     const media = window.matchMedia("(max-width:750px)");
     const handleChange = (e)=>{
+      if(!e.matches){
+        setToggel(false)
+      }
       setMobileView(e.matches)
     }
     setMobileView(media.matches);
@@ -18,8 +21,8 @@ export default function Navbar() {
   },[])
 
   return (
-    <section>
-      <div className="NavBar"> 
+    <section className="NavBarContainer"> 
+      <div className="NavBar justifyцентр " style={!toggle ? {backgroundColor : "white"} : {backgroundColor :"#D9F3B9"}}> 
          <div className="caaLogo">
               <img src="/logo.png" alt="CAA Logo" />
           </div>  
@@ -28,18 +31,36 @@ export default function Navbar() {
 
         (
             <div className="hamMenu" onClick={()=>setToggel((prev)=>!prev)}>
-              <img src="/menu.png" alt="CAA Logo" />
+              {toggle ? 
+              <div className="stackT">
+                  <div className="plate1T">
+                  </div>
+                  <div className="plate2T">
+                  </div>
+                  <div className="plate3T">
+                  </div>
+                 
+              </div>
+                :
+                <div className="stack">
+                  <div className="plate1">
+                  </div>
+                  <div className="plate2">
+                  </div>
+                  <div className="plate3">
+                  </div>
+                </div>}
             </div>
 
           ) :(
             <>
             <div className="nav-links">
-                  <a href="#about">About</a>  
-                  <a href="#partners">Partners</a>
-                  <a href="#workshops">Workshops</a>
-                  <a href="#willayas">Willayas</a>
-                  <a href="#FAQ">FAQs</a>
-                  <a href="#contact">Contact</a>
+                  <a href="#about">About <div></div></a>  
+                  <a href="#partners">Partners <div></div></a>
+                  <a href="#workshops">Workshops<div></div></a>
+              <a href="#wilayas">Wilayas<div></div></a>
+              <a href="#faq">FAQs<div></div></a>
+                  <a href="#contact">Contact<div></div></a>
                 
               </div>
           <div className="register">
@@ -56,13 +77,13 @@ export default function Navbar() {
       </div>
       {toggle && mobileView &&
        <div className="nav-links-toggled" onClick={()=>setToggel(false)}>              
-                  <a href="#about" onClick={()=>console.log("about")}>About</a> 
-                  <a href="#partners">Partners</a>
-                  <a href="#workshops">Workshops</a>
-                  <a href="#willayas">Willayas</a>
-                  <a href="#FAQ">FAQs</a>
-                  <a href="#contact">Contact</a>
-              </div>
+                  <a href="#about">About <div></div></a> 
+                  <a href="#partners">Partners <div></div></a>
+                  <a href="#workshops">Workshops <div></div></a>
+                  <a href="#wilayas">Wilayas <div></div></a>
+                  <a href="#faq">FAQs <div></div></a>
+                  <a href="#contact">Contact <div></div></a>
+        </div>
         } 
     </section>
   );

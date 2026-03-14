@@ -1,13 +1,17 @@
 .NavBar{
-    display: flex;
-    position: sticky;
+    display: flex; 
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
+    padding: 20px;  
+     background-image: url("/Dots.png");
+    color: black;
     font-size: larger;
-    background: transparent;
+    
+}
+.NavBarContainer{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 .NavBar .logo {
     font-size: 24px;
@@ -19,14 +23,13 @@
     justify-content: space-between;
 }   
 .caaLogo{
-   
     margin-left: 10px;
     flex: 0 0 64px;
 }
 .caaLogo img{
     
      width: 64px;
-    height: 64px;
+    
 }
 .registerBtn{
     padding: 10px 20px;
@@ -38,31 +41,105 @@
 }
 .hamMenu{
     cursor: pointer;
+    width: 50px;
+   
 }
 
 .nav-links-toggled{
     position: absolute;
     display: flex;
     flex-direction: column;
-    height: 300px;
+    font-weight: 500;
+    align-items: center;
+    height: 402px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 100%;
     justify-content: space-evenly;
     padding: 10px;
-    background-color: white;
+    z-index: 1000;
     color: black;
     will-change: drop;
     animation: drop 0.2s ease-in-out;
+    background-color: #D9F3B9;
+    background-image: url("/Dots.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+   
 }
 @keyframes drop {
     from {
         height: 0px;
     }
     to{
-        height: 300px;
+        height: 402px;
     }
 }
 .nav-links-toggled a{
     font-size: larger;
+}
+.stack{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50px;
+    gap: 10px
+    ;
+}
+.stack div{
+    width: 50px;
+    height: 05px;
+    background-color: #759451;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+.stackT{
+   height: 100%;
+    width: 50px;
+}
+.stackT div{
+    width: 50px;
+    height: 05px;
+   
+    position: absolute;
+    top: 50%;
+    background-color: #759451;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+.plate2T{
+    display: none;
+}
+.plate1T{
+
+    transform: rotate(45deg);
+}
+.plate3T{
+    transform: rotate(-45deg);
+}
+a{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+}
+a div{
+    width: 100%;
+    height: 2px;
+    display: none;
+    animation: hovering 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+}
+a:hover div{
+    display: block;
+    background-color: black;
+}   
+@keyframes hovering {
+    from{
+        width: 0px;
+    }
+    to{
+        width: 100%;
+    }
 }

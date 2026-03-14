@@ -40,6 +40,8 @@
 }
 .hamMenu{
     cursor: pointer;
+    width: 50px;
+   
 }
 
 .nav-links-toggled{
@@ -54,7 +56,7 @@
     width: 100%;
     justify-content: space-evenly;
     padding: 10px;
-    
+    z-index: 1000;
     color: black;
     will-change: drop;
     animation: drop 0.2s ease-in-out;
@@ -62,7 +64,7 @@
     background-image: url("/Dots.png");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
    
 }
 @keyframes drop {
@@ -75,4 +77,43 @@
 }
 .nav-links-toggled a{
     font-size: larger;
+}
+.stack{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50px;
+    gap: 10px
+    ;
+}
+.stack div{
+    width: 50px;
+    height: 05px;
+    background-color: #759451;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+.stackT{
+   height: 100%;
+    width: 50px;
+}
+.stackT div{
+    width: 50px;
+    height: 05px;
+   
+    position: absolute;
+    top: 50%;
+    background-color: #759451;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+.plate2T{
+    display: none;
+}
+.plate1T{
+
+    transform: rotate(45deg);
+}
+.plate3T{
+    transform: rotate(-45deg);
 }

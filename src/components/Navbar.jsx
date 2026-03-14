@@ -31,7 +31,25 @@ export default function Navbar() {
 
         (
             <div className="hamMenu" onClick={()=>setToggel((prev)=>!prev)}>
-              <img src={toggle ? "/close.png" : "/menu.png"} alt="CAA Logo" />
+              {toggle ? 
+              <div className="stackT">
+                  <div className="plate1T">
+                  </div>
+                  <div className="plate2T">
+                  </div>
+                  <div className="plate3T">
+                  </div>
+                 
+              </div>
+                :
+                <div className="stack">
+                  <div className="plate1">
+                  </div>
+                  <div className="plate2">
+                  </div>
+                  <div className="plate3">
+                  </div>
+                </div>}
             </div>
 
           ) :(

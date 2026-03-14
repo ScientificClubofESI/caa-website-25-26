@@ -1,16 +1,17 @@
 .NavBar{
-    display: flex;
-    position: sticky;
+    display: flex; 
     justify-content: space-between;
     align-items: center;
     padding: 20px;  
      background-image: url("/Dots.png");
-    
-    
-    
     color: black;
     font-size: larger;
     
+}
+.NavBarContainer{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 .NavBar .logo {
     font-size: 24px;

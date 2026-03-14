@@ -21,7 +21,7 @@ export default function Navbar() {
   },[])
 
   return (
-    <section>
+    <section className="NavBarContainer"> 
       <div className="NavBar justifyцентр " style={!toggle ? {backgroundColor : "white"} : {backgroundColor :"#D9F3B9"}}> 
          <div className="caaLogo">
               <img src="/logo.png" alt="CAA Logo" />

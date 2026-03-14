@@ -55,12 +55,12 @@ export default function Navbar() {
           ) :(
             <>
             <div className="nav-links">
-                  <a href="#about">About</a>  
-                  <a href="#partners">Partners</a>
-                  <a href="#workshops">Workshops</a>
-              <a href="#wilayas">Wilayas</a>
-              <a href="#faq">FAQs</a>
-                  <a href="#contact">Contact</a>
+                  <a href="#about">About <div></div></a>  
+                  <a href="#partners">Partners <div></div></a>
+                  <a href="#workshops">Workshops<div></div></a>
+              <a href="#wilayas">Wilayas<div></div></a>
+              <a href="#faq">FAQs<div></div></a>
+                  <a href="#contact">Contact<div></div></a>
                 
               </div>
           <div className="register">
@@ -77,12 +77,12 @@ export default function Navbar() {
       </div>
       {toggle && mobileView &&
        <div className="nav-links-toggled" onClick={()=>setToggel(false)}>              
-                  <a href="#about">About</a> 
-                  <a href="#partners">Partners</a>
-                  <a href="#workshops">Workshops</a>
-                  <a href="#wilayas">Wilayas</a>
-                  <a href="#faq">FAQs</a>
-                  <a href="#contact">Contact</a>
+                  <a href="#about">About <div></div></a> 
+                  <a href="#partners">Partners <div></div></a>
+                  <a href="#workshops">Workshops <div></div></a>
+                  <a href="#wilayas">Wilayas <div></div></a>
+                  <a href="#faq">FAQs <div></div></a>
+                  <a href="#contact">Contact <div></div></a>
         </div>
         } 
     </section>

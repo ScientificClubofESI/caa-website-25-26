@@ -118,7 +118,12 @@
 .plate3T{
     transform: rotate(-45deg);
 }
-
+a{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+}
 a div{
     width: 100%;
     height: 2px;

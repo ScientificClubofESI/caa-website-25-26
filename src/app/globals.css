@@ -3,12 +3,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --secondary-950: #3A541C;
+  --secondary-100: #D9F3B9;
+  --secondary-800: #759451;
+  --secondary-500: #ACD47C;
+  --white-light: #FBF9F7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-quicksand);
+  --color-secondary-950: var(--secondary-950);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-500: var(--secondary-950);
+  --color-white-light: var(--white-light)
 }
 
 @media (prefers-color-scheme: dark) {

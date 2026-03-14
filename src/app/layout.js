@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={quicksand.variable}>
-      <body>
+      <body className={quicksand.variable}>
         {children}
       </body>
     </html>

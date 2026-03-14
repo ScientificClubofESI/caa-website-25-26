@@ -9,28 +9,37 @@ export default function HeroSection() {
 
       <div className="hero-container">
         
-        {/* ── BIG HEADINGS ── */}
-        <div className="hero-headings">
-          {/* CSE */}
-          <span className="hero-heading-span heading-cse">
-            CSE
-          </span>
-          {/* Around */}
-          <span className="hero-heading-span heading-around">
-            Around
-          </span>
-          {/* Algeria */}
-          <span className="hero-heading-span heading-algeria">
-            Algeria
-          </span>
-          {/* And */}
-          <span className="hero-heading-span heading-and">
-            And
-          </span>
-          {/* Beyond */}
-          <span className="hero-heading-span heading-beyond">
-            Beyond
-          </span>
+        {/* ── DESKTOP/MOBILE TEXT FRAME ── */}
+        <div className="hero-text-frame">
+          {/* ── BIG HEADINGS ── */}
+          <div className="hero-headings">
+            <span className="hero-heading-span heading-cse">
+              CSE
+            </span>
+            <span className="hero-heading-span heading-around">
+              Around
+            </span>
+            <span className="hero-heading-span heading-algeria">
+              Algeria
+            </span>
+            <span className="hero-heading-span heading-and">
+              And
+            </span>
+            <span className="hero-heading-span heading-beyond">
+              Beyond
+            </span>
+          </div>
+
+          {/* ── SUBTEXT + CTA ── */}
+          <div className="hero-content">
+            <p className="hero-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
+              mi. Aliquam in hendrerit urna.
+            </p>
+            <a href="#register" className="hero-cta">
+              Register Now
+            </a>
+          </div>
         </div>
 
         {/* ── DATE IMAGE ── */}
@@ -41,17 +50,6 @@ export default function HeroSection() {
             width={177.26}
             height={149.7}
           />
-        </div>
-
-        {/* ── SUBTEXT + CTA ── */}
-        <div className="hero-content">
-          <p className="hero-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
-            mi. Aliquam in hendrerit urna.
-          </p>
-          <a href="#register" className="hero-cta">
-            Register Now
-          </a>
         </div>
 
         {/* ── POLAROID 1 (Center / Park) ── */}

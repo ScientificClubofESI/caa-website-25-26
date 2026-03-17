@@ -130,12 +130,12 @@ export default function Workshops() {
         <div className="relative hidden md:flex w-[90%] md:max-w-325">
           <img src='/arrow.png' className="absolute w-55 -top-50 -left-30 z-10" />
 
-          <div className="flex flex-row justify-between items-center w-full bg-[#567532] p-[4vh] gap-8">
+          <div className="flex flex-row justify-between items-center w-full bg-[#567532] p-[4vh] gap-6 md:gap-8">
             <div className="flex flex-col justify-between items-start w-[40%] max-w-100 self-stretch">
-              <h2 className="font-semibold text-4xl text-[#FBF9F7]">
+              <h2 className="font-semibold text-2xl md:text-4xl text-[#FBF9F7]">
                 {categories[currentIndex].name}
               </h2>
-              <p className="font-medium text-base md:text-lg text-[#E4E3E5]">
+              <p className="font-medium text-[14px] md:text-lg text-[#E4E3E5]">
                 {categories[currentIndex].description}
               </p>
               <div className="flex flex-row gap-12">

@@ -164,7 +164,7 @@ export default function Footer() {
             </p>
           </div>
           <Link href={"/register"}>
-            <button className="bg-secondary-800 w-full text-xl md:text-xl capitalize font-medium p-2 border border-secondary-800 text-white-light transition-all duration-300 hover:[box-shadow:0px_4px_4px_0px_#00000040]">
+            <button className="bg-secondary-800 w-full text-[14px] p-1 md:text-xl capitalize font-medium p-2 border border-secondary-800 text-white-light transition-all duration-300 hover:[box-shadow:0px_4px_4px_0px_#00000040]">
               register now{" "}
             </button>
           </Link>

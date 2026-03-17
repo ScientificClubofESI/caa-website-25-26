@@ -17,7 +17,7 @@ function FAQColumn({ data }) {
         <div key={index}>
           {!openItems.includes(index) ? (
             <div className="bg-white max-xs:w-79.75 xs:w-120 flex flex-row items-center justify-between xl:w-157.25 max-sm:h-13 h-21.5 border-2 border-[#759451] max-xs:pt-4 max-xs:pb-4 max-xs:pr-5 max-xs:pl-5 pt-7 pb-7 pr-10 pl-10">
-              <h1 className="text-[22px] font-bold max-xs:text-[16px]">{item.title}</h1>
+              <h1 className="text-[22px] font-bold max-xs:text-[12px]">{item.title}</h1>
               <button className="cursor-pointer" onClick={() => toggle(index)}>
                 <Image src="/down.png" width={35} height={35} alt="drop down" className="max-xs:w-5 max-xs:h-5" />
               </button>
@@ -26,7 +26,7 @@ function FAQColumn({ data }) {
             <div className="bg-white items-center max-xs:w-79.75 xs:w-120 xl:w-157.25 h-auto border-2 border-[#ACD47C] p-2">
               <div className="bg-[#F3FDE8] border-2 shadow-[0px_0px_10px_0px_#ACD47C] border-[#3A541C] h-full pt-7 pb-7 pr-10 pl-10 max-xs:pt-4 max-xs:pb-4 max-xs:pr-5 max-xs:pl-5">
                 <div className="flex flex-row items-center justify-between">
-                  <h1 className="text-[24px] font-bold text-[#152027] max-xs:text-[16px]">{item.title}</h1>
+                  <h1 className="text-[24px] font-bold text-[#152027] max-xs:text-[12px]">{item.title}</h1>
                   <button className="cursor-pointer" onClick={() => toggle(index)}>
                     <Image src="/up.png" width={35} height={35} alt="drop down" className="max-xs:w-5 max-xs:h-5" />
                   </button>

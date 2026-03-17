@@ -162,7 +162,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
 
 
       <div ref={statsRef} className="mb-[40px] flex justify-center items-center">
-        <div className="bg-[#6A8A44] rounded-2xl md:rounded-3xl flex flex-row justify-around items-center gap-4 md:gap-8 px-8 md:px-10 py-4 md:h-[120px]">
+        <div className="bg-[#6A8A44] rounded-2xl md:rounded-3xl flex flex-row justify-around items-center gap-4 md:gap-8 px-4 md:px-10 py-4 md:h-[120px]">
           {STATS.map(({ target, prefix, label }, i) => (
             <Fragment key={label}>
               <StatItem target={target} prefix={prefix} label={label} active={statsActive} />

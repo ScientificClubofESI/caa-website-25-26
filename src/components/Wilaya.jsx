@@ -280,7 +280,7 @@ export default function WilayasSection() {
           </div>
         </div>
 
-        <button className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
+        <button onClick={() => router.push("/register")} className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
           Register Now
         </button>
       </div>

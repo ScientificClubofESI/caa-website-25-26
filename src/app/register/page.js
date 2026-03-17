@@ -24,14 +24,24 @@ export default function Register() {
   });
 
   // ── Fetch wilayas on mount ─────────────────────────────────────────────────
-  useEffect(() => {
-    fetch(`${API}/wilayas`)
-      .then(r => r.json())
-      .then(data => setWilayas(Array.isArray(data) ? data : []))
-      .catch(() => setError("Could not load wilayas. Is the API running?"))
-      .finally(() => setLoadingWilayas(false));
-  }, []);
-
+// In your useEffect, cache in sessionStorage so it only fetches once per browser session
+useEffect(() => {
+  const cached = sessionStorage.getItem("caa_wilayas");
+  if (cached) {
+    setWilayas(JSON.parse(cached));
+    setLoadingWilayas(false);
+    return;
+  }
+  fetch(`${API}/wilayas`)
+    .then(r => r.json())
+    .then(data => {
+      const list = Array.isArray(data) ? data : [];
+      setWilayas(list);
+      sessionStorage.setItem("caa_wilayas", JSON.stringify(list));
+    })
+    .catch(() => setError("Could not load wilayas."))
+    .finally(() => setLoadingWilayas(false));
+}, []);
   // ── Fetch workshops when wilaya changes ────────────────────────────────────
   useEffect(() => {
     if (!formData.wilayaId) return;

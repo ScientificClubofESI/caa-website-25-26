@@ -1,121 +1,215 @@
-export default function About() {
+'use client';
+
+import { Fragment, useEffect, useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
+
+
+const STATS = [
+  { target: 25, prefix: '+', label: 'Mentors' },
+  { target: 25, prefix: '+', label: 'Workshops' },
+  { target: 20, prefix: '+', label: 'Wilayas' },
+  { target: 20, prefix: '+', label: 'Clubs' },
+  { target: 1,  prefix: '',  label: 'Day' },
+];
+
+const VALUES = [
+  { src: '/images/about/community.png',     label: 'Community'    },
+  { src: '/images/about/innovation.png',    label: 'Innovation'   },
+  { src: '/images/about/collaboration.png', label: 'Collaboration' },
+  { src: '/images/about/impact.png',        label: 'Impact'       },
+];
+
+const DURATION = 1600;
+
+
+function useCountUp(target, active) {
+  const [count, setCount] = useState(0);
+  const rafRef = useRef(null);
+
+  const run = useCallback(() => {
+    const start = performance.now();
+    const tick = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / DURATION, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+  }, [target]);
+
+  useEffect(() => {
+    if (active) {
+      setCount(0);
+      cancelAnimationFrame(rafRef.current);
+      run();
+    } else {
+      setCount(0);
+    }
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [active, run]);
+
+  return count;
+}
+
+
+
+function StatItem({ target, prefix, label, active }) {
+  const count = useCountUp(target, active);
   return (
-    <section className="p-8 bg-[var(--background)]"> 
-<div className="first flex flex-col md:flex-row p-[40px]">
-  
-  <div className="left md:w-1/2 mb-[20px] md:mb-0 flex flex-col">
-    
-    <img src="/flechemobile.png" alt="" className="md:hidden w-[142px] mb-[12px] -mx-20"/>
-    <img src="/fleche.png" alt="" className="hidden md:block w-[252px] mb-[16px] p-0 -mx-20"/>
-    
-    <h1 className="text-[32px] text-[var(--foreground)] font-bold text-center md:text-left md:text-[64px] mb-[20px]">
-      Touring Algeria. <br />
-      Sharing Knowledge.
-    </h1>
-    <p className="text-[16px] text-[var(--foreground)] font-normal text-center md:text-left md:text-[20px]">
-      Born from a passion for learning and innovation, our workshop tour travels across Algeria to connect students, creatives, and tech enthusiasts. We believe in sharing skills, building community, and creating impact — one city at a time.
-    </p>
-  </div>
-
-  <div className="right flex justify-center items-center md:w-1/2">
-    <div className="relative w-[300px] h-[280px] md:w-[480px] md:h-[420px]">
-      
-      <img 
-        src="/images/photo2.jpg" 
-        alt="" 
-        className="absolute border-[8px] md:border-[12px] border-white shadow-lg object-cover"
-        style={{ width: '52%', transform: 'rotate(-6deg)', top: '0px', left: '0px', zIndex: 1, aspectRatio: '7/6' }}
-      />
-      
-      <img 
-        src="/images/photo2.jpg" 
-        alt="" 
-        className="absolute border-[8px] md:border-[12px] border-white shadow-lg object-cover"
-        style={{ width: '52%', transform: 'rotate(5deg)', top: '0px', right: '0px', zIndex: 1, aspectRatio: '7/6' }}
-      />
-      
-      <img 
-        src="/images/photo2.jpg" 
-        alt="" 
-        className="absolute border-[8px] md:border-[12px] border-white shadow-2xl object-cover"
-        style={{ width: '62%', transform: 'rotate(-3deg)', bottom: '0px', left: '50%', marginLeft: '-31%', zIndex: 2, aspectRatio: '7/6' }}
-      />
-      
+    <div className="flex flex-col items-center justify-center flex-1">
+      <h5 className="font-bold text-[24px] md:text-[32px] text-white leading-tight">
+        {prefix}{count}
+      </h5>
+      <p className="text-[12px] md:text-[18px] font-bold text-white">{label}</p>
     </div>
-  </div>
-
-</div>
-<div className="stats mx-8 md:mx-16 mb-[40px] flex justify-center items-center">
-  <div className="rectangle bg-[#6A8A44] rounded-2xl md:rounded-4xl flex flex-row justify-around items-center w-full md:w-1/2 px-4 md:px-8 py-3 md:py-0 md:h-[146px]">
-    
-    <div className="text-center">
-      <h5 className="font-bold text-[20px] md:text-[40px] text-white">+25</h5>
-      <p className="text-[13px] md:text-[20px] font-bold text-white">Mentors</p>
-    </div>
-
-    <div className="self-stretch w-[1px] md:w-[2px] bg-white/50 my-3 md:my-6"></div>
-
-    <div className="text-center">
-      <h5 className="font-bold text-[20px] md:text-[40px] text-white">+25</h5>
-      <p className="text-[13px] md:text-[20px] font-bold text-white">Workshops</p>
-    </div>
-
-    <div className="self-stretch w-[1px] md:w-[2px] bg-white/50 my-3 md:my-6"></div>
-
-    <div className="text-center">
-      <h5 className="font-bold text-[20px] md:text-[40px] text-white">+20</h5>
-      <p className="text-[13px] md:text-[20px] font-bold text-white">Wilayas</p>
-    </div>
-
-    <div className="self-stretch w-[1px] md:w-[2px] bg-white/50 my-3 md:my-6"></div>
-
-    <div className="text-center">
-      <h5 className="font-bold text-[20px] md:text-[40px] text-white">+20</h5>
-      <p className="text-[13px] md:text-[20px] font-bold text-white">Clubs</p>
-    </div>
+  );
+}
 
 
-    <div className="self-stretch w-[1px] md:w-[2px] bg-white/50 my-3 md:my-6 "></div>
-    <div className="text-center">
-      <h5 className="font-bold text-[20px] md:text-[40px] text-white">1</h5>
-      <p className="text-[13px] md:text-[20px] font-bold text-white">Day</p>
-    </div>
 
-  </div>
-</div>
+export default function About() {
+  const statsRef = useRef(null);
+  const [statsActive, setStatsActive] = useState(false);
 
-   <div className="values flex md:flex-row flex-col items-center md:items-center px-4 md:px-16 mb-[10px]">
-  
-  
-  <div className="left flex flex-row items-center md:w-auto md:mr-[0px]">
-    <h1 className="font-bold md:text-[36px] text-[16px] text-[#313D5B] md:text-[#6A8A44] text-center md:text-left whitespace-nowrap">
-      Our Values
-    </h1>
-    
-    <img src="/flechevalues.png" alt="" className="hidden md:block w-[440px] ml-[24px]"/>
-  </div>
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsActive(false);
+          requestAnimationFrame(() => setStatsActive(true));
+        } else {
+          setStatsActive(false);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-  
-  <div className="right flex flex-row w-full md:w-auto gap-[10px] md:gap-[40px] md:flex-1 justify-around md:justify-end mt-[10px] md:mt-0">
-    <div className="flex flex-col justify-center items-center">
-      <img src="/community.png" alt="" className="md:w-[90px] md:h-[90px] w-[40px] h-[40px]"/>
-      <p className="md:text-[20px] font-bold text-[12px] text-[#313D5B] text-center">Community</p>
-    </div>
-    <div className="flex flex-col justify-center items-center">
-      <img src="/innovation.png" alt="" className="md:w-[90px] md:h-[90px] w-[40px] h-[40px]"/>
-      <p className="md:text-[20px] font-bold text-[12px] text-[#313D5B] text-center">Innovation</p>
-    </div>
-    <div className="flex flex-col justify-center items-center">
-      <img src="/collaboration.png" alt="" className="md:w-[90px] md:h-[90px] w-[40px] h-[40px]"/>
-      <p className="md:text-[20px] font-bold text-[12px] text-[#313D5B] text-center">Collaboration</p>
-    </div>
-    <div className="flex flex-col justify-center items-center">
-      <img src="/impact.png" alt="" className="md:h-[90px] h-[40px]"/>
-      <p className="md:text-[20px] font-bold text-[12px] text-[#313D5B] text-center">Impact</p>
-    </div>
-  </div>
+  return (
+    <section  id="about" className="p-8 md:p-12">
 
-</div>
+      <div className="first flex flex-col md:flex-row p-[32px] md:p-[48px]">
+
+        <div className="left md:w-1/2 mb-[16px] md:mb-0 flex flex-col">
+          <Image
+            src="/images/about/flechemobile.png"
+            alt="" width={142} height={60}
+            className="md:hidden mb-[12px] -mx-20"
+          />
+          <Image
+            src="/images/about/fleche.png"
+            alt="" width={252} height={80}
+            className="hidden md:block mb-[16px] p-0 -mx-20"
+          />
+          <h1 className="text-[32px] text-[var(--foreground)] font-bold text-center md:text-left md:text-[64px] mb-[16px]">
+            Touring Algeria. <br />
+            Sharing Knowledge.
+          </h1>
+          <p className="text-[16px] text-[var(--foreground)] font-normal text-center md:text-left md:text-[20px]">
+            Born from a passion for learning and innovation, CSE Around Algeria is a nationwide initiative where workshops travel across Algeria to connect tech enthusiasts, creators, and future innovators.
+Through collaboration with university clubs, we aim to share knowledge, build communities, and inspire learning
+          </p>
+        </div>
+
+   
+        <div className="right flex justify-center items-center md:w-1/2">
+          <div className="relative w-[300px] h-[280px] md:w-[480px] md:h-[420px]">
+
+            <Image
+              src="/images/about/image_1_1.png"
+              alt=""
+              width={250} height={250}
+              className="absolute "
+              style={{
+                width: '52%', height: 'auto',
+                transform: 'rotate(-6deg)',
+                top: 0, left: 0, zIndex: 1,
+              }}
+            />
+
+            <Image
+              src="/images/about/image_1_1.png"
+              alt=""
+              width={250} height={250}
+              className="absolute "
+              style={{
+                width: '52%', height: 'auto',
+                transform: 'rotate(6deg)',
+                top: 0, right: 0, zIndex: 1,
+              }}
+            />
+
+            <Image
+              src="/images/about/image_1_1.png"
+              alt=""
+              width={300} height={300}
+              className="absolute "
+              style={{
+                width: '62%', height: 'auto',
+                transform: 'rotate(9deg)',
+                bottom: 0, left: '50%', marginLeft: '-31%', zIndex: 2,
+              }}
+            />
+
+          </div>
+        </div>
+      </div>
+
+
+      <div ref={statsRef} className="mb-[40px] flex justify-center items-center">
+        <div className="bg-[#6A8A44] rounded-2xl md:rounded-3xl flex flex-row justify-around items-center gap-4 md:gap-8 px-8 md:px-10 py-4 md:h-[120px]">
+          {STATS.map(({ target, prefix, label }, i) => (
+            <Fragment key={label}>
+              <StatItem target={target} prefix={prefix} label={label} active={statsActive} />
+              {i < STATS.length - 1 && (
+                <div className="self-stretch w-[2px] md:w-[2px] bg-white/100 my-2 md:my-8" />
+              )}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+
+   
+      <div className="values flex md:flex-row flex-col items-center px-8 md:px-16 mb-[10px]">
+
+        <div className="left flex flex-row items-center md:w-auto">
+          <h1 className="font-bold md:text-[36px] text-[18px] text-[#313D5B] md:text-[#6A8A44] text-center md:text-left whitespace-nowrap">
+            Our Values
+          </h1>
+          <Image
+            src="/images/about/flechevalues.png"
+            alt="" width={400} height={40}
+            className="hidden md:block ml-[12px]"
+          />
+        </div>
+
+        <div className="right flex flex-row w-full md:w-auto gap-[10px] md:gap-[40px] md:flex-1 justify-around md:justify-end mt-[10px] md:mt-0">
+          {VALUES.map(({ src, label }) => (
+            <div
+              key={label}
+              className="flex flex-col justify-center items-center
+                         transition-transform duration-300 ease-out
+                         hover:-translate-y-2 cursor-default"
+            >
+              <Image
+                src={src}
+                alt={label}
+                width={68} height={68}
+                className="md:w-[78px] md:h-[78px] w-[46px] h-[46px]"
+              />
+              <p className="md:text-[16px] font-bold text-[12px] text-[#313D5B] text-center mt-1">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
     </section>
   );
 }

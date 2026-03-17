@@ -9,10 +9,21 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div>
-      
+    <div
+      style={{
+        backgroundColor: "#FBF9F7",
+        backgroundImage: "radial-gradient(circle, #00000018 1.5px, transparent 1px)",
+        backgroundSize: "10px 10px",
+      }}
+    >
+      <Navbar />
+      <Hero />
+      <About />
+      <Partners />
+      <Wilaya />
+      <Workshops />
       <FAQ />
-    
+      <Footer />
     </div>
   );
 }

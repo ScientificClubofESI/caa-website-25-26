@@ -1,64 +1,53 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 
-// Multiple pages of partners, each with different positions on the map
 const partnerPages = [
   [
-    { name: "GDG Batna", top: "18%", left: "53%" },
-    { name: "GDG Batna", top: "28%", left: "67%" },
-    { name: "GDG Batna", top: "25%", left: "43%" },
-    { name: "GDG Batna", top: "38%", left: "55%" },
-    { name: "GDG Batna", top: "35%", left: "75%" },
-    { name: "GDG Batna", top: "50%", left: "41%" },
-    { name: "GDG Batna", top: "48%", left: "60%" },
-    { name: "GDG Batna", top: "55%", left: "73%" },
-    { name: "GDG Batna", top: "62%", left: "50%" },
-    { name: "GDG Batna", top: "70%", left: "63%" },
+    { name: "New Way School",          logo: "/images/partners/aindefla_new_way_school.png",              top: "28%", left: "38%" },
+    { name: "Our Voice Club",          logo: "/images/partners/aintemouchen_Our_voice_club.png",          top: "16%", left: "53%" },
+    { name: "All In Med",              logo: "/images/partners/alger_All_in_med.png",                     top: "16%", left: "77%" },
+    { name: "Lilix Consulting",        logo: "/images/partners/alger_lilix_consulting.png",               top: "44%", left: "50%" },
+    { name: "Quanta",                  logo: "/images/partners/alger_Quanta.png",                         top: "50%", left: "70%" },
+    { name: "Upgraderz",               logo: "/images/partners/alger_upgraderz.png",                      top: "86%", left: "75%" },
+    { name: "Infinity Club",           logo: "/images/partners/bba_infinity_club.png",                    top: "66%", left: "32%" },
+    { name: "Rival School",            logo: "/images/partners/bejaia_Rival_School.png",                  top: "65%", left: "58%" },
   ],
   [
-    { name: "GDG Oran", top: "20%", left: "40%" },
-    { name: "GDG Algiers", top: "16%", left: "53%" },
-    { name: "GDG Setif", top: "24%", left: "65%" },
-    { name: "GDG Annaba", top: "22%", left: "79%" },
-    { name: "GDG Blida", top: "36%", left: "47%" },
-    { name: "GDG Djelfa", top: "42%", left: "60%" },
-    { name: "GDG Biskra", top: "52%", left: "69%" },
-    { name: "GDG Bechar", top: "48%", left: "40%" },
-    { name: "GDG Ghardaia", top: "62%", left: "53%" },
-    { name: "GDG Ouargla", top: "70%", left: "65%" },
+    { name: "Atom",                    logo: "/images/partners/bouira_Atom.png",                          top: "30%", left: "44%" },
+    { name: "Mecatro Scientific Club", logo: "/images/partners/boumerdes_Mecatro_Scientific_Club.png",    top: "16%", left: "58%" },
+    { name: "Elfikr Coworking",        logo: "/images/partners/chlef_elfikr_coworking.png",               top: "54%", left: "34%" },
+    { name: "GDG Constantine",         logo: "/images/partners/constantine_gdgconstantine.png",           top: "52%", left: "72%" },
+    { name: "EL Khalef Essalih",       logo: "/images/partners/ghardaia_EL_Khalef_Essalih.png",           top: "80%", left: "35%" },
+    { name: "Esperanza Club",          logo: "/images/partners/jijel_esperanza_club.png",                 top: "18%", left: "76%" },
+    { name: "TechVerse",               logo: "/images/partners/medea_TechVerse.png",                      top: "56%", left: "52%" },
+    { name: "Elec Club",               logo: "/images/partners/msila_Elec_Club.png",                      top: "80%", left: "75%" },
   ],
   [
-    { name: "GDG Tiaret", top: "24%", left: "45%" },
-    { name: "GDG Medea", top: "20%", left: "57%" },
-    { name: "GDG Jijel", top: "18%", left: "70%" },
-    { name: "GDG Tlemcen", top: "28%", left: "37%" },
-    { name: "GDG Msila", top: "36%", left: "60%" },
-    { name: "GDG Skikda", top: "24%", left: "79%" },
-    { name: "GDG Laghouat", top: "50%", left: "50%" },
-    { name: "GDG Touggourt", top: "58%", left: "65%" },
-    { name: "GDG Adrar", top: "68%", left: "45%" },
-    { name: "GDG Tamanrasset", top: "76%", left: "57%" },
+    { name: "Scientific Corner",       logo: "/images/partners/ouargla_Scientific_corner.png",            top: "75%", left: "62%" },
+    { name: "SDG Club",                logo: "/images/partners/setif_SDG_Club.png",                       top: "36%", left: "65%" },
+    { name: "TechZone",                logo: "/images/partners/setif_TechZone.png",                       top: "50%", left: "52%" },
+    { name: "Youaim Academy",          logo: "/images/partners/tebessa_Youaim_academy.png",               top: "18%", left: "78%" },
+    { name: "CyberNexus DZ",           logo: "/images/partners/tiaret_CyberNexusDz.png",                  top: "80%", left: "40%" },
+    { name: "Epstimi Signum Club",     logo: "/images/partners/tipaza_Epstimi_Signum_Club.png",           top: "16%", left: "53%" },
+    { name: "CSI",                     logo: "/images/partners/tiziouzou_CSI.png",                        top: "66%", left: "80%" },
+    { name: "YouThink Club",           logo: "/images/partners/tlemcen_youthinkclub.png",                 top: "24%", left: "38%" },
   ],
 ];
 
-// Generate dashed line connections between partner cards
 function DashedLines({ partners }) {
   const connections = [];
   for (let i = 0; i < partners.length - 1; i++) {
     connections.push([i, i + 1]);
   }
-  // Add a few cross-connections for the web look
   if (partners.length >= 6) {
     connections.push([0, 3]);
     connections.push([2, 5]);
     connections.push([4, 7]);
-    connections.push([6, 8]);
     connections.push([1, 4]);
-    connections.push([5, 8]);
+    connections.push([5, 7]);
     connections.push([3, 6]);
-    connections.push([7, 9]);
   }
 
   return (
@@ -86,13 +75,22 @@ function DashedLines({ partners }) {
   );
 }
 
-function PartnerCard({ name, style, className = "" }) {
+function PartnerCard({ name, logo, style, className = "" }) {
   return (
     <div
-      className={`z-10 flex flex-col items-center ${className}`}
+      className={`z-10 flex flex-col items-center group cursor-pointer ${className}`}
       style={style}
     >
-      <div className="relative w-[100px] h-[75px] md:w-[100px] md:h-[75px]">
+      <div
+        className="
+          relative w-[100px] h-[75px] md:w-[110px] md:h-[85px]
+          transition-all duration-300 ease-out
+          group-hover:-translate-y-2
+          group-hover:scale-105
+          group-hover:drop-shadow-[0_0_14px_rgba(86,117,50,0.75)]
+        "
+      >
+
         <Image
           src="/partner-frame.png"
           alt="frame"
@@ -101,13 +99,13 @@ function PartnerCard({ name, style, className = "" }) {
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 px-1">
           <Image
-            src="/GDG_LOGO.png"
-            alt="GDG Logo"
-            width={30}
-            height={30}
+            src={logo}
+            alt={`${name} logo`}
+            width={50}
+            height={50}
             className="object-contain"
           />
-          <span className="text-[8px] font-semibold text-gray-700 whitespace-nowrap leading-none">
+          <span className="text-[10px] font-bold text-gray-700 text-center leading-tight px-1 line-clamp-2">
             {name}
           </span>
         </div>
@@ -150,21 +148,16 @@ export default function Partners() {
   const currentPartners = partnerPages[page];
 
   return (
-    <section className="bg-[#FBF9F7] pb-10">
+    <section id="partners" className="pb-10">
       <h1 className="flex justify-center text-3xl md:text-5xl font-bold text-black pt-16 md:pt-30">
         Our Partners
       </h1>
-      <p className="text-center text-sm md:text-base font-medium text-[#6E7578] leading-relaxed px-6 md:px-20 py-4 md:py-8">
-        Lorem ipsum dolor sit amet consectetur. Venenatis adipiscing viverra
-        eget vivamus euismod augue donec nunc.Lorem ipsum dolor sit amet
-        consectetur. Venenatis adipiscing viverra eget vivamus augue donec
-        nunc.Lorem ipsum dolor sit amet consectetur. Venenatis adipiscing
-        viverra eget vivamus euismod augue donec nunc.Lorem
+      <p className="text-center text-base md:text-lg font-medium text-[#6E7578] leading-relaxed px-6 md:px-20 py-4 md:py-8">
+ CSE Around Algeria is made possible thanks to the collaboration of amazing university clubs across the country. <br/>
+Together, we bring workshops and learning opportunities to different wilayas, building a strong tech community and sharing <br/> knowledge with passionate learners.
       </p>
 
-      {/* ===== DESKTOP LAYOUT ===== */}
       <div className="hidden md:flex justify-between items-center px-20 lg:px-40">
-        {/* Left arrow */}
         <div
           onClick={handlePrev}
           className="relative cursor-pointer hover:opacity-80 transition shrink-0 w-14 h-14 flex items-center justify-center"
@@ -183,16 +176,14 @@ export default function Partners() {
           <FaArrowLeftLong className="text-xl text-[#4E5F8B]" />
         </div>
 
-        {/* Map with partner cards */}
+  
         <div className="relative mx-4 flex-1 max-w-5xl mr-20">
-          {/* Map image with bottom fade */}
+  
           <div
             className="relative"
             style={{
-              WebkitMaskImage:
-                "linear-gradient(to bottom, black 65%, transparent 100%)",
-              maskImage:
-                "linear-gradient(to bottom, black 65%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
             }}
           >
             <Image
@@ -204,14 +195,15 @@ export default function Partners() {
             />
           </div>
 
-          {/* Dashed lines connecting partner cards */}
+
           <DashedLines partners={currentPartners} />
 
-          {/* Partner cards overlaid on map */}
+
           {currentPartners.map((p, i) => (
             <PartnerCard
               key={`${page}-${i}`}
               name={p.name}
+              logo={p.logo}
               className="absolute"
               style={{
                 top: p.top,
@@ -222,7 +214,6 @@ export default function Partners() {
           ))}
         </div>
 
-        {/* Right arrow */}
         <div
           onClick={handleNext}
           className="relative cursor-pointer hover:opacity-80 transition shrink-0 w-14 h-14 flex items-center justify-center"
@@ -253,10 +244,8 @@ export default function Partners() {
         <div
           className="absolute inset-0 z-0 overflow-hidden"
           style={{
-            WebkitMaskImage:
-              "linear-gradient(to bottom, black 60%, transparent 100%)",
-            maskImage:
-              "linear-gradient(to bottom, black 60%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
           }}
         >
           <Image
@@ -269,30 +258,21 @@ export default function Partners() {
           />
         </div>
 
-        {/* Partner cards in grid rows */}
+        {/* Partner cards in grid rows: 2 / 3 / 3 */}
         <div className="relative z-10 flex flex-col items-center gap-2 px-4 py-4">
-          {/* Row 1: 2 cards */}
           <div className="flex justify-center gap-3">
             {currentPartners.slice(0, 2).map((p, i) => (
-              <PartnerCard key={`m-${page}-${i}`} name={p.name} />
+              <PartnerCard key={`m-${page}-${i}`} name={p.name} logo={p.logo} />
             ))}
           </div>
-          {/* Row 2: 3 cards */}
           <div className="flex justify-center gap-3">
             {currentPartners.slice(2, 5).map((p, i) => (
-              <PartnerCard key={`m-${page}-${i + 2}`} name={p.name} />
+              <PartnerCard key={`m-${page}-${i + 2}`} name={p.name} logo={p.logo} />
             ))}
           </div>
-          {/* Row 3: 2 cards */}
           <div className="flex justify-center gap-3">
-            {currentPartners.slice(5, 7).map((p, i) => (
-              <PartnerCard key={`m-${page}-${i + 5}`} name={p.name} />
-            ))}
-          </div>
-          {/* Row 4: 3 cards */}
-          <div className="flex justify-center gap-3">
-            {currentPartners.slice(7, 10).map((p, i) => (
-              <PartnerCard key={`m-${page}-${i + 7}`} name={p.name} />
+            {currentPartners.slice(5, 8).map((p, i) => (
+              <PartnerCard key={`m-${page}-${i + 5}`} name={p.name} logo={p.logo} />
             ))}
           </div>
         </div>

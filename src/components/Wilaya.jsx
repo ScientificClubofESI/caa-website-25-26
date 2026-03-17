@@ -1,45 +1,53 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-
-// ─── 22 Wilayas — replace `image` with your real asset paths ─────────────────
+import Link from "next/link";
 const WILAYAS = [
-  { name: "Algiers",        image: "images/algiers.png"      },
-  { name: "Ain Temouchent", image: "images/aintemouchent.png"},
-  { name: "Ain Defla",      image: "images/aindefla.png"     },
-  { name: "Bouira",         image: "images/bouira.png"       },
-  { name: "Boumerdes",      image: "images/boumerdes.png"    },
-  { name: "Blida",          image: "images/blida.png"        },
-  { name: "Bejaia",         image: "images/bejaia.png"       },
-  { name: "Bordj Bou Arreridj",image: "images/bba.png"       },
-  { name: "Chlef",          image: "images/chlef.png"        },
-  { name: "Ghardaia",       image: "images/ghardaia.png"     },
-  { name: "Constantine",    image: "images/constantine.png"  },
-  { name: "Jijel",          image: "images/jijel.png"        },
-  { name: "Medea",          image: "images/medea.png"        },
-  { name: "Msila",          image: "images/msila.png"        },
-  { name: "Ouargla",        image: "images/ouargla.png"      },
-  { name: "Skikda",         image: "images/skikda.png"       },
-  { name: "Setif",          image: "images/setif.png"        },
-  { name: "Tizi Ouzou",     image: "images/tizi_ouzou.png"   },
-  { name: "Tipaza",         image: "images/tipaza.png"       },
-  { name: "Tlemcen",        image: "images/tlemcen.png"      },
-  { name: "Tiaret",         image: "images/tiaret.png"       },
-  { name: "Tebessa",        image: "images/tebessa.png"      },
+  { name: "Algiers",           image: "images/wilaya/algiers.png"       },
+  { name: "Ain Temouchent",    image: "images/wilaya/aintemouchent.png" },
+  { name: "Ain Defla",         image: "images/wilaya/aindefla.png"      },
+  { name: "Bouira",            image: "images/wilaya/bouira.png"        },
+  { name: "Boumerdes",         image: "images/wilaya/boumerdes.png"     },
+  { name: "Blida",             image: "images/wilaya/blida.png"         },
+  { name: "Bejaia",            image: "images/wilaya/bejaia.png"        },
+  { name: "Bordj Bou Arreridj",image: "images/wilaya/bba.png"          },
+  { name: "Chlef",             image: "images/wilaya/chlef.png"         },
+  { name: "Ghardaia",          image: "images/wilaya/ghardaia.png"      },
+  { name: "Constantine",       image: "images/wilaya/constantine.png"   },
+  { name: "Jijel",             image: "images/wilaya/jijel.png"         },
+  { name: "Medea",             image: "images/wilaya/medea.png"         },
+  { name: "Msila",             image: "images/wilaya/msila.png"         },
+  { name: "Ouargla",           image: "images/wilaya/ouargla.png"       },
+  { name: "Skikda",            image: "images/wilaya/skikda.png"        },
+  { name: "Setif",             image: "images/wilaya/setif.png"         },
+  { name: "Tizi Ouzou",        image: "images/wilaya/tizi_ouzou.png"    },
+  { name: "Tipaza",            image: "images/wilaya/tipaza.png"        },
+  { name: "Tlemcen",           image: "images/wilaya/tlemcen.png"       },
+  { name: "Tiaret",            image: "images/wilaya/tiaret.png"        },
+  { name: "Tebessa",           image: "images/wilaya/tebessa.png"       },
 ];
 
 const CHUNK_SIZE  = 4;
 const INTERVAL_MS = 3000;
 
+// ── Desktop grid constants ────────────────────────────────────────────────────
+const D_COL_W       = 247;
+const D_GRID_H      = 462;
+const D_GAP         = 12;
+const D_RIGHT_OFF   = 104;
+const D_LEFT_H      = (D_GRID_H - D_GAP - 90) / 2;
+const D_RIGHT_TOP_H = D_GRID_H - D_RIGHT_OFF - 179 - D_GAP;
+const D_RIGHT_BOT_H = 179;
 
-const GRID_W      = 506;
-const GRID_H      = 462;
-const COL_W       = 247;
-const GAP         = 12;
-const RIGHT_OFF   = 104;
-const LEFT_H      = (GRID_H - GAP - 90) / 2;                    
-const RIGHT_TOP_H = GRID_H - RIGHT_OFF - 179 - GAP;        
-const RIGHT_BOT_H = 179;
+// ── Mobile grid constants (scaled ~0.62×) ─────────────────────────────────────
+const SCALE         = 0.62;
+const M_COL_W       = Math.round(D_COL_W     * SCALE);
+const M_GRID_H      = Math.round(D_GRID_H    * SCALE);
+const M_GAP         = Math.round(D_GAP       * SCALE);
+const M_RIGHT_OFF   = Math.round(D_RIGHT_OFF * SCALE);
+const M_LEFT_H      = Math.round(D_LEFT_H    * SCALE);
+const M_RIGHT_TOP_H = Math.round(D_RIGHT_TOP_H * SCALE);
+const M_RIGHT_BOT_H = Math.round(D_RIGHT_BOT_H * SCALE);
 
 function toChunks(arr, size) {
   const out = [];
@@ -48,7 +56,6 @@ function toChunks(arr, size) {
 }
 const CHUNKS = toChunks(WILAYAS, CHUNK_SIZE);
 
-// ─── Pin colors ───────────────────────────────────────────────────────────────
 const ACTIVE_FILL     = "#8DAD68";
 const INACTIVE_FILL   = "#BDE38F";
 const ACTIVE_STROKE   = "#8DAD68";
@@ -127,8 +134,8 @@ function WilayasSVG({ activeIdx }) {
       />
       {PINS.map((p, i) => {
         const active = i === activeIdx;
-        const fill   = active ? ACTIVE_FILL    : INACTIVE_FILL;
-        const stroke = active ? ACTIVE_STROKE  : INACTIVE_STROKE;
+        const fill   = active ? ACTIVE_FILL   : INACTIVE_FILL;
+        const stroke = active ? ACTIVE_STROKE : INACTIVE_STROKE;
         return (
           <g key={p.filterId}>
             <circle cx="10" cy="10" r="10" transform={p.circleTransform}
@@ -150,15 +157,24 @@ function WilayasSVG({ activeIdx }) {
 }
 
 // ─── Label badge ──────────────────────────────────────────────────────────────
-function Label({ name, side = "left" }) {
+function Label({ name, side = "left", mobile = false }) {
   return (
     <span
       className={`
-        absolute z-10 top-[62.5px] 
+        absolute z-10
         bg-[#CCE9A8] backdrop-blur-sm text-[#3A541C] font-semibold
-        text-xs sm:text-sm leading-snug px-5 py-3
-        rounded-[17px] shadow-md border border-dashed border-[1px] border-[#3A541C] 
-        ${side === "left" ? "-left-10" : "-right-10"}
+        leading-snug rounded-[17px] shadow-md
+        border border-dashed border-[1px] border-[#3A541C]
+        transition-shadow duration-200
+        hover:shadow-[0_10px_20px_rgba(58,84,28,0.35)]
+        ${mobile
+          ? "top-[38px] text-[12px] px-2 py-1.5"
+          : "top-[62.5px] text-xs sm:text-sm px-5 py-3"
+        }
+        ${side === "left"
+          ? (mobile ? "-left-4" : "-left-10")
+          : (mobile ? "-right-4" : "-right-10")
+        }
       `}
     >
       {name}
@@ -166,41 +182,47 @@ function Label({ name, side = "left" }) {
   );
 }
 
-// ─── Photo grid — keep transitions instant ────────────────────────────────────
-function PhotoGrid({ photos, visible }) {
+// ─── Photo grid ───────────────────────────────────────────────────────────────
+function PhotoGrid({ photos, mobile = false }) {
   const [tL, bL, tR, bR] = [photos[0], photos[2], photos[1], photos[3]];
 
+  const colW      = mobile ? M_COL_W       : D_COL_W;
+  const gridH     = mobile ? M_GRID_H      : D_GRID_H;
+  const gap       = mobile ? M_GAP         : D_GAP;
+  const rightOff  = mobile ? M_RIGHT_OFF   : D_RIGHT_OFF;
+  const leftH     = mobile ? M_LEFT_H      : D_LEFT_H;
+  const rightTopH = mobile ? M_RIGHT_TOP_H : D_RIGHT_TOP_H;
+  const rightBotH = mobile ? M_RIGHT_BOT_H : D_RIGHT_BOT_H;
+
   return (
-    <div
-      className={`relative w-full h-[462px]`}
-    >
+    <div className="relative" style={{ width: colW * 2 + gap, height: gridH }}>
       {/* Left column */}
-      <div className="absolute left-0 flex flex-col gap-[12px]" style={{ width: COL_W }}>
+      <div className="absolute left-0 flex flex-col" style={{ gap, width: colW }}>
         {tL && (
-          <div className="relative flex-shrink-0" style={{ width: COL_W, height: LEFT_H }}>
-            <Label name={tL.name} side="left" />
+          <div className="relative flex-shrink-0" style={{ width: colW, height: leftH }}>
+            <Label name={tL.name} side="left" mobile={mobile} />
             <img src={tL.image} alt={tL.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
           </div>
         )}
         {bL && (
-          <div className="relative flex-shrink-0" style={{ width: COL_W, height: LEFT_H }}>
-            <Label name={bL.name} side="left" />
+          <div className="relative flex-shrink-0" style={{ width: colW, height: leftH }}>
+            <Label name={bL.name} side="left" mobile={mobile} />
             <img src={bL.image} alt={bL.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
           </div>
         )}
       </div>
 
       {/* Right column */}
-      <div className="absolute right-0 flex flex-col gap-[12px]" style={{ width: COL_W, top: 90 }}>
+      <div className="absolute right-0 flex flex-col" style={{ gap, width: colW, top: rightOff }}>
         {tR && (
-          <div className="relative flex-shrink-0" style={{ width: COL_W, height: RIGHT_TOP_H }}>
-            <Label name={tR.name} side="right" />
+          <div className="relative flex-shrink-0" style={{ width: colW, height: rightTopH }}>
+            <Label name={tR.name} side="right" mobile={mobile} />
             <img src={tR.image} alt={tR.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
           </div>
         )}
         {bR && (
-          <div className="relative flex-shrink-0" style={{ width: COL_W, height: RIGHT_BOT_H }}>
-            <Label name={bR.name} side="right" />
+          <div className="relative flex-shrink-0" style={{ width: colW, height: rightBotH }}>
+            <Label name={bR.name} side="right" mobile={mobile} />
             <img src={bR.image} alt={bR.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
           </div>
         )}
@@ -212,7 +234,7 @@ function PhotoGrid({ photos, visible }) {
 // ─── Main section ─────────────────────────────────────────────────────────────
 export default function WilayasSection() {
   const [chunkIdx, setChunkIdx] = useState(0);
-
+  const router = useRouter();
   useEffect(() => {
     const t = setInterval(() => {
       setChunkIdx((p) => (p + 1) % CHUNKS.length);
@@ -220,48 +242,89 @@ export default function WilayasSection() {
     return () => clearInterval(t);
   }, []);
 
+  const mTrackerW = M_COL_W * 2 + M_GAP;
+
   return (
-    <section
-      className="w-full py-12"
-      style={{
-        backgroundImage: "radial-gradient(circle, rgb(197, 197, 197) 1px, transparent 1px)",
-        backgroundSize: "12px 12px",
-        paddingLeft: 80,
-        paddingRight: 80,
-      }}
-    >
-      <div className="flex flex-wrap lg:flex-nowrap items-center" style={{ gap: 132 }}>
-        {/* LEFT: text */}
+    <section id="wilayas" className="w-full p-8 md:p-24">
+
+      <div className="flex flex-col items-center gap-6 lg:hidden">
+        <h2
+          className="font-black leading-tight text-[#9EC274] text-center w-full"
+          style={{
+            fontSize: "clamp(48px, 13vw, 78px)",
+            fontFamily: "'Quicksand', sans-serif",
+            fontWeight: 700,
+            WebkitTextStroke: "1px #3A541C",
+          }}
+        >
+          More than<br />20 wilayas
+        </h2>
+
+        <p
+          className="text-[#242E33] leading-relaxed text-center max-w-sm"
+          style={{
+            fontSize: "clamp(14px, 3.8vw, 18px)",
+            fontFamily: "'Quicksand', sans-serif",
+            fontWeight: 400,
+          }}
+        >
+          Discover the wilayas where our workshops will be held, offering
+          valuable learning experiences and engagement opportunities in your
+          local community.
+        </p>
+
+        <div className="flex flex-col items-center gap-3 py-2 overflow-visible">
+          <PhotoGrid photos={CHUNKS[chunkIdx]} mobile={true} />
+          <div style={{ width: mTrackerW }}>
+            <WilayasSVG activeIdx={chunkIdx} />
+          </div>
+        </div>
+
+        <button className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
+          Register Now
+        </button>
+      </div>
+
+      <div className="hidden lg:flex flex-nowrap items-center" style={{ gap: 132 }}>
         <div className="flex-1 min-w-[280px]">
           <h2
             className="font-black leading-tight text-[#9EC274] mb-5"
-            style={{ fontSize: "100px", fontFamily: "'Quicksand', sans-serif", fontWeight: 700, WebkitTextStroke: "1px #3A541C" }}
+            style={{
+              fontSize: "90px",
+              fontFamily: "'Quicksand', sans-serif",
+              fontWeight: 650,
+              WebkitTextStroke: "1px #3A541C",
+            }}
           >
             More than<br />20 wilayas
           </h2>
 
           <p
-            className="text-[#242E33] leading-relaxed mb-7 sm:text-base"
-            style={{ fontSize: "22px", fontFamily: "'Quicksand', sans-serif", fontWeight: 400 }}
+            className="text-[#242E33] leading-relaxed mb-7"
+            style={{
+              fontSize: "22px",
+              fontFamily: "'Quicksand', sans-serif",
+              fontWeight: 400,
+            }}
           >
-            Discover the wilayas where our workshops will be held, offering
-            valuable learning experiences and engagement opportunities in your
-            local community.
+            Discover the wilayas where our workshops will be held, offering valuable learning experiences and engagement opportunities in your local community.
           </p>
 
-          <button className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
+     
+          <button   onClick={() => router.push("/register")} className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
             Register Now
           </button>
+   
         </div>
 
-        {/* RIGHT: Wilayas panel */}
         <div className="flex flex-col gap-4 py-4">
-          <PhotoGrid photos={CHUNKS[chunkIdx]} visible={true} />
-          <div className="w-[506px]">
+          <PhotoGrid photos={CHUNKS[chunkIdx]} mobile={false} />
+          <div style={{ width: 506 }}>
             <WilayasSVG activeIdx={chunkIdx} />
           </div>
         </div>
       </div>
+
     </section>
   );
 }

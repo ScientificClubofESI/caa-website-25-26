@@ -1,145 +1,180 @@
-.NavBar{
-    display: flex; 
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;  
-     background-image: url("/Dots.png");
-    color: black;
-    font-size: larger;
-    
+@keyframes flatSpin {
+  0%   { transform: rotate(0deg);   }
+  100% { transform: rotate(360deg); }
 }
-.NavBarContainer{
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+
+@keyframes jumpPulse {
+  0%,  100% { transform: translateY(0px);   }
+  30%        { transform: translateY(-8px);  }
+  50%        { transform: translateY(-12px); }
+  70%        { transform: translateY(-5px);  }
 }
-.NavBar .logo {
-    font-size: 24px;
-    font-weight: bold;
+
+.caa-logo-spin {
+  display: inline-block;
+  animation: flatSpin 8s linear infinite, jumpPulse 2.4s ease-in-out infinite;
+  transform-origin: center center;
 }
+
+.caa-logo-wrapper:hover .caa-logo-spin {
+  animation: flatSpin 2.5s linear infinite, jumpPulse 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(117, 148, 81, 0.7));
+}
+
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: black;
+  font-size: larger;
+  background-color: transparent;
+  background-repeat: repeat;
+}
+
+.NavBarContainer {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+}
+
 .NavBar .nav-links {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-}   
-.caaLogo{
-    margin-left: 10px;
-    flex: 0 0 64px;
-}
-.caaLogo img{
-    
-     width: 64px;
-    
-}
-.registerBtn{
-    padding: 10px 20px;
-    background-color: #759451;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.hamMenu{
-    cursor: pointer;
-    width: 50px;
-   
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
 }
 
-.nav-links-toggled{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-    align-items: center;
-    height: 402px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    width: 100%;
-    justify-content: space-evenly;
-    padding: 10px;
-    z-index: 1000;
-    color: black;
-    will-change: drop;
-    animation: drop 0.2s ease-in-out;
-    background-color: #D9F3B9;
-    background-image: url("/Dots.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat;
-   
+.caaLogo {
+  margin-left: 10px;
+  flex: 0 0 64px;
 }
-@keyframes drop {
-    from {
-        height: 0px;
-    }
-    to{
-        height: 402px;
-    }
-}
-.nav-links-toggled a{
-    font-size: larger;
-}
-.stack{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 50px;
-    gap: 10px
-    ;
-}
-.stack div{
-    width: 50px;
-    height: 05px;
-    background-color: #759451;
-    border-radius: 10px;
-    transition: 0.2s ease-in-out;
-}
-.stackT{
-   height: 100%;
-    width: 50px;
-}
-.stackT div{
-    width: 50px;
-    height: 05px;
-   
-    position: absolute;
-    top: 50%;
-    background-color: #759451;
-    border-radius: 10px;
-    transition: 0.2s ease-in-out;
-}
-.plate2T{
-    display: none;
-}
-.plate1T{
 
-    transform: rotate(45deg);
+.caaLogo img {
+  width: 64px;
 }
-.plate3T{
-    transform: rotate(-45deg);
+
+.registerBtn {
+  padding: 10px 20px;
+  background-color: #759451;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
 }
-a{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 5px;
+
+.registerBtn:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
-a div{
-    width: 100%;
-    height: 2px;
-    display: none;
-    animation: hovering 0.2s ease-in-out;
-    transition: 0.2s ease-in-out;
+
+a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
 }
-a:hover div{
-    display: block;
-    background-color: black;
-}   
+
+a div {
+  width: 100%;
+  height: 2px;
+  display: none;
+  animation: hovering 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+a:hover div {
+  display: block;
+  background-color: #759451;
+}
+
 @keyframes hovering {
-    from{
-        width: 0px;
-    }
-    to{
-        width: 100%;
-    }
+  from { width: 0px;   }
+  to   { width: 100%;  }
 }
+
+.active-link {
+  color: #759451 !important;
+  font-weight: 600;
+}
+
+.active-underline {
+  display: block !important;
+  background-color: #759451 !important;
+  width: 100% !important;
+  height: 2px;
+  animation: hovering 0.2s ease-in-out;
+}
+
+.hamMenu {
+  cursor: pointer;
+  width: 28px;
+}
+
+.nav-links-toggled {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  align-items: center;
+  height: 402px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 10px;
+  z-index: 1000;
+  color: black;
+  animation: drop 0.2s ease-in-out;
+  background-color: #D9F3B9;
+  background-image: url("/Dots.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+@keyframes drop {
+  from { height: 0px;   }
+  to   { height: 200px; }
+}
+
+.nav-links-toggled a {
+  font-size: larger;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  gap: 4px;
+}
+
+.stack div {
+  width: 28px;
+  height: 3px;
+  background-color: #759451;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.stackT {
+  height: 100%;
+  width: 28px;
+}
+
+.stackT div {
+  width: 28px;
+  height: 3px;
+  position: absolute;
+  top: 50%;
+  background-color: #759451;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.plate2T { display: none; }
+.plate1T { transform: rotate(45deg);  }
+.plate3T { transform: rotate(-45deg); }

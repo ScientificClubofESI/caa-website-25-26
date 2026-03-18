@@ -160,7 +160,7 @@ export default function Footer() {
           <div className="w-[50%] md:w-full">
             <h3 className="capitalize ">join now </h3>
             <p className="font-light text-white-light/70 text-[18px] first-letter:uppercase ">
-              ready to make an impact? register now !
+              ready to make an impact? <br/> register now !
             </p>
           </div>
           <Link href={"/register"}>
@@ -173,7 +173,7 @@ export default function Footer() {
 
       <div>
         <div className="arrowup flex p-3 justify-end items-end  w-full  border-b-2 border-dashed border-secondary-100/40  ">
-          <Link
+          <a
             href="#home"
             aria-label="Back to top"
             className="
@@ -201,7 +201,7 @@ export default function Footer() {
               <path d="M18 11l-6 -6" />
               <path d="M6 11l6 -6" />
             </svg>
-          </Link>
+          </a>
         </div>
         <div className="w-full h-full my-5 flex justify-center items-center">
           <p className="capitalize  text-center text-white-light/50 font-medium ">

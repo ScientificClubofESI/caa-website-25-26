@@ -20,7 +20,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="home" className="hero-section mt-12">
+    <section id="home" className="hero-section mt-16">
       <div className="hero-container">
         <div className="hero-headings">
 

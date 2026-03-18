@@ -53,13 +53,13 @@ export default function Navbar() {
   if (isContact) return null
 
   return (
-    <section className="NavBarContainer">
+    <section className="NavBarContainer px-[2px] md:px-16">
       <div className="NavBar" style={toggle ? { backgroundColor: "#D9F3B9", backgroundImage: "url('/Dots.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "repeat" } : {}}>
         <div className="caaLogo">
           <div className="caa-logo-wrapper">
-            <div className="caa-logo-spin">
+            <a href="#home" className="caa-logo-spin">
               <img src="/logo.png" alt="CAA Logo" />
-            </div>
+            </a>
           </div>
         </div>
 

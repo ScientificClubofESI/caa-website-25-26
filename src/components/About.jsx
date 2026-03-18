@@ -117,7 +117,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
         </div>
 
    
-        <div className="right flex justify-center items-center md:w-1/2">
+        <div className="pt-20 right flex justify-center items-center md:w-1/2">
           <div className="relative w-[300px] h-[280px] md:w-[480px] md:h-[420px]">
 
             <Image
@@ -183,12 +183,12 @@ Through collaboration with university clubs, we aim to share knowledge, build co
           </h1>
           <Image
             src="/images/about/flechevalues.png"
-            alt="" width={400} height={40}
-            className="hidden md:block ml-[12px]"
+            alt="" width={300} height={30}
+            className="hidden md:block ml-[10px]"
           />
         </div>
 
-        <div className=" flex flex-row w-full items-center md:right md:w-auto gap-[10px] md:gap-[40px] md:flex-1 justify-around md:justify-end mt-[10px] md:mt-0">
+        <div className=" flex flex-row w-full items-center md:right md:w-auto gap-[8px] md:gap-[30px] md:flex-1 justify-center md:justify-end mt-[10px] md:mt-0">
           {VALUES.map(({ src, label }) => (
             <div
               key={label}
@@ -199,8 +199,8 @@ Through collaboration with university clubs, we aim to share knowledge, build co
               <Image
                 src={src}
                 alt={label}
-                width={68} height={68}
-                className="md:w-[78px] md:h-[78px] w-[46px] h-[46px]"
+                width={58} height={58}
+                className="md:w-[70px] md:h-[70px] w-[40px] h-[40px]"
               />
               <p className="md:text-[16px] font-bold text-[12px] text-[#313D5B] text-center mt-1">
                 {label}

@@ -72,7 +72,6 @@ const VISIBLE_ROWS = 3;
 const GAP = 8;
 const CONTAINER_HEIGHT = CARD_HEIGHT * VISIBLE_ROWS + GAP * (VISIBLE_ROWS - 1);
 
-// Speed settings (Higher = Slower)
 const SECONDS_PER_CARD_DESKTOP = 2.5; 
 const SECONDS_PER_CARD_MOBILE = 4;
 
@@ -99,11 +98,9 @@ export default function Workshops() {
   const currentCategory = categories[currentIndex];
   const workshops = currentCategory.workshops;
 
-  // Next/Prev Handlers
   const handleNext = () => setCurrentIndex((p) => (p + 1) % categories.length);
   const handlePrev = () => setCurrentIndex((p) => (p + categories.length - 1) % categories.length);
 
-  // Dynamic Animation Logic
   const desktopDuration = useMemo(() => (workshops.length / 2) * SECONDS_PER_CARD_DESKTOP, [workshops]);
   const mobileDuration = useMemo(() => workshops.length * SECONDS_PER_CARD_MOBILE, [workshops]);
   const shouldScroll = workshops.length > 6;
@@ -124,7 +121,7 @@ export default function Workshops() {
 
         {/* Desktop View */}
         <div className="hidden md:flex relative w-full bg-[#567532] p-10 gap-12 items-center min-h-[450px] shadow-2xl">
-            <img src='/arrow.png' alt="" className="absolute -top-16 -left-12 w-48 pointer-events-none" />
+            <img src='/arrow.png' alt="" className="absolute -top-45 -left-12 w-48 pointer-events-none" />
 
             {/* Left Content */}
             <div className="w-2/5 flex flex-col justify-between self-stretch">

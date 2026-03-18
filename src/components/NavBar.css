@@ -12,7 +12,7 @@
 
 .caa-logo-spin {
   display: inline-block;
-  animation: flatSpin 8s linear infinite, jumpPulse 2.4s ease-in-out infinite;
+  /*animation: flatSpin 8s linear infinite, jumpPulse 2.4s ease-in-out infinite;*/
   transform-origin: center center;
 }
 
@@ -60,7 +60,7 @@
   background-color: #759451;
   color: white !important;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
   transition: box-shadow 0.25s ease;
 }
@@ -115,7 +115,14 @@
 }
 
 .nav-links-toggled {
-  position: absolute;
+  position: fixed; 
+  top: 80px; 
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px); 
+  overflow-y: auto; 
+  z-index: 999;
+  overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -126,7 +133,6 @@
   width: 100%;
   justify-content: space-evenly;
   padding: 10px;
-  z-index: 1000;
   color: black;
   animation: drop 0.2s ease-in-out;
   background-color: #D9F3B9;

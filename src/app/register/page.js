@@ -108,7 +108,7 @@ useEffect(() => {
 
   return (
     <div
-      className="h-screen font-quicksand flex flex-col items-center justify-center bg-[#FBF9F7] relative px-6 md:px-16 py-4"
+      className="min-h-screen font-quicksand flex flex-col items-center justify-center bg-[#FBF9F7] relative px-6 md:px-16 py-4"
       style={{ backgroundImage: "radial-gradient(circle, #00000018 1.5px, transparent 1px)", backgroundSize: "10px 10px" }}
     >
       {/* Navbar */}

@@ -2,43 +2,51 @@
 import Image from "next/image";
 import { useState } from "react";
 
-function FAQColumn({ data }) {
-  const [openItems, setOpenItems] = useState([]);
-
-  const toggle = (index) => {
-    setOpenItems((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
-  };
+function FAQItem({ item }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="gap-y-4 md:gap-y-8 flex flex-col">
-      {data.map((item, index) => (
-        <div key={index}>
-          {!openItems.includes(index) ? (
-            <div className="bg-white max-xs:w-79.75 xs:w-120 flex flex-row items-center justify-between xl:w-157.25 max-sm:h-13 h-21.5 border-2 border-[#759451] max-xs:pt-4 max-xs:pb-4 max-xs:pr-5 max-xs:pl-5 pt-7 pb-7 pr-10 pl-10">
-              <h1 className="text-[22px] font-bold max-xs:text-[12px]">{item.title}</h1>
-              <button className="cursor-pointer" onClick={() => toggle(index)}>
-                <Image src="/down.png" width={35} height={35} alt="drop down" className="max-xs:w-5 max-xs:h-5" />
-              </button>
+    <div className="w-full">
+      <div 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`bg-white cursor-pointer max-xs:w-79.75 xs:w-120 xl:w-150 border-2 flex flex-col p-[4px] md:p-[6px] transition-colors duration-200 ${
+          isOpen ? "border-[#ACD47C]" : "border-[#759451] h-21.5 max-sm:h-13"
+        }`}
+      >
+        <div className={`h-full flex flex-col ${
+          isOpen 
+            ? "bg-[#F3FDE8] border-2 border-[#3A541C] pt-7 pb-7 pr-10 pl-10 max-xs:pt-4 max-xs:pb-4 max-xs:pr-5 max-xs:pl-5 shadow-[0px_4px_15px_rgba(172,212,124,0.6)]" 
+            : "justify-center px-10 max-xs:px-5 h-full"
+        }`}>
+          
+          <div className="flex flex-row items-center justify-between">
+            <h1 className={`font-bold max-xs:text-[12px] transition-all duration-200 ${
+              isOpen ? "text-[24px] text-[#152027]" : "text-[22px]"
+            }`}>
+              {item.title}
+            </h1>
+            <div className={`flex-shrink-0 rounded-full p-0 transition-shadow duration-200  ${
+              isOpen ? "shadow-[0px_0px_12px_2px_rgba(58,84,28,0.3)] -translate-y-2" : "shadow-[0px_0px_12px_2px_rgba(58,84,28,0.3)] "
+            }`}>
+               <Image 
+                src={isOpen ? "/up.png" : "/down.png"} 
+                width={35} 
+                height={35} 
+                alt="toggle" 
+                className="max-xs:w-5 max-xs:h-5 " 
+              />
             </div>
-          ) : (
-            <div className="bg-white items-center max-xs:w-79.75 xs:w-120 xl:w-157.25 h-auto border-2 border-[#ACD47C] p-2">
-              <div className="bg-[#F3FDE8] border-2 shadow-[0px_0px_10px_0px_#ACD47C] border-[#3A541C] h-full pt-7 pb-7 pr-10 pl-10 max-xs:pt-4 max-xs:pb-4 max-xs:pr-5 max-xs:pl-5">
-                <div className="flex flex-row items-center justify-between">
-                  <h1 className="text-[24px] font-bold text-[#152027] max-xs:text-[12px]">{item.title}</h1>
-                  <button className="cursor-pointer" onClick={() => toggle(index)}>
-                    <Image src="/up.png" width={35} height={35} alt="drop down" className="max-xs:w-5 max-xs:h-5" />
-                  </button>
-                </div>
-                <div className="xl:pt-6 max-xs:pt-3 xs:pt-4">
-                  <p className="xl:text-[18px] xs:text-[14px] max-xs:text-[12px] text-[#3C464B]">{item.content}</p>
-                </div>
-              </div>
+          </div>
+
+          <div className={`${isOpen ? "block pt-6 max-xs:pt-3 opacity-100" : "hidden opacity-0"}`}>
+            <div className="overflow-hidden">
+              <p className="xl:text-[18px] xs:text-[14px] max-xs:text-[12px] text-[#3C464B] leading-relaxed">
+                {item.content}
+              </p>
             </div>
-          )}
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
@@ -75,33 +83,36 @@ const rightFAQs = [
 
 export default function FAQ() {
   return (
-    <section id="faqs">
-      <div className="max-w-screen h-full p-6 md:p-30 my-20">
-        <div className="text-center">
-          <h1 className="text-[#140C18] text-[64px] max-m:text-[40px] font-bold pb-20 max-xs:hidden">
+    <section id="faqs" className="overflow-x-hidden">
+      <div className="min-w-screen h-full p-6 md:p-30 my-20">
+        <div className="text-center mb-20 max-xs:mb-10">
+          <h1 className="text-[#140C18] text-[64px] max-m:text-[40px] font-bold max-xs:hidden">
             Frequently Asked Questions
           </h1>
-          <h1 className="text-[36px] text-[#140C18] font-bold xs:hidden pb-13.75">
+          <h1 className="text-[36px] text-[#140C18] font-bold xs:hidden">
             FAQ
           </h1>
         </div>
 
-        <div className="flex flex-col">
-          <div className="flex flex-row gap-x-5 max-m:flex-col max-m:gap-y-8.25 content-center max-m:items-center justify-center">
-            <div className="relative">
-              <div className="absolute z-1 -left-20 -top-20">
-                <Image src="/imagel.png" width={186.78} height={219.55} alt="image" />
-              </div>
-              <FAQColumn data={leftFAQs} />
+        <div className="flex flex-row gap-x-5 max-m:flex-col max-m:gap-y-4 items-center md:items-start justify-center">
+          {/* Left Column */}
+          <div className="relative flex flex-col gap-y-4 md:gap-y-8">
+            <div className="absolute z-1 -left-20 -top-20">
+              <Image src="/imagel.png" width={186} height={219} alt="decor" />
             </div>
-            <div className="relative">
-              <FAQColumn data={rightFAQs} />
-              <div className="absolute z-1 -right-20 -bottom-40">
-                <Image src="/imager.png" width={186.78} height={219.55} alt="image" />
-              </div>
+            {leftFAQs.map((faq, index) => <FAQItem key={index} item={faq} />)}
+          </div>
+
+          {/* Right Column */}
+          <div className="relative flex flex-col gap-y-4 md:gap-y-8">
+            {rightFAQs.map((faq, index) => <FAQItem key={index} item={faq} />)}
+            <div className="absolute z-1 -right-20 -bottom-30 w-40 h-40 ">
+              <Image src="/imager.png" width={186} height={219} alt="decor" />
             </div>
           </div>
         </div>
+
+
       </div>
     </section>
   );

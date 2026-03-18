@@ -10,12 +10,15 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div
+     
       style={{
         backgroundColor: "#FBF9F7",
         backgroundImage: "radial-gradient(circle, #00000018 1.5px, transparent 1px)",
         backgroundSize: "10px 10px",
       }}
     >
+
+      <main className="overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />
@@ -23,6 +26,7 @@ export default function Home() {
       <Wilaya />
       <Workshops />
       <FAQ />
+      </main>
       <Footer />
     </div>
   );

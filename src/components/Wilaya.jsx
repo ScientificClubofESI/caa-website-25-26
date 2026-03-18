@@ -245,7 +245,7 @@ export default function WilayasSection() {
   const mTrackerW = M_COL_W * 2 + M_GAP;
 
   return (
-    <section id="wilayas" className="w-full p-8 md:p-24">
+    <section id="wilayas" className="max-w-screen p-8 md:p-24">
 
       <div className="flex flex-col items-center gap-6 lg:hidden">
         <h2

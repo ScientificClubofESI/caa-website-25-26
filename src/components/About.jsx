@@ -91,7 +91,7 @@ export default function About() {
   }, []);
 
   return (
-    <section  id="about" className="p-8 md:p-12">
+    <section  id="about" className="max-w-screen p-8 md:p-12 ">
 
       <div className="first flex flex-col md:flex-row p-[32px] md:p-[48px]">
 
@@ -152,7 +152,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
               style={{
                 width: '62%', height: 'auto',
                 transform: 'rotate(9deg)',
-                bottom: 0, left: '50%', marginLeft: '-31%', zIndex: 2,
+                bottom: '30%', left: '50%', marginLeft: '-31%', zIndex: 2,
               }}
             />
 
@@ -162,7 +162,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
 
 
       <div ref={statsRef} className="mb-[40px] flex justify-center items-center">
-        <div className="bg-[#6A8A44] rounded-2xl md:rounded-3xl flex flex-row justify-around items-center gap-4 md:gap-8 px-4 md:px-10 py-4 md:h-[120px]">
+        <div className="bg-[#6A8A44] rounded-xl md:rounded-3xl flex flex-row justify-around items-center text-[11px] gap-2 md:gap-8 px-2 md:px-10 py-2 md:h-[120px]">
           {STATS.map(({ target, prefix, label }, i) => (
             <Fragment key={label}>
               <StatItem target={target} prefix={prefix} label={label} active={statsActive} />
@@ -177,7 +177,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
    
       <div className="values flex md:flex-row flex-col items-center px-8 md:px-16 mb-[10px]">
 
-        <div className="left flex flex-row items-center md:w-auto">
+        <div className=" flex flex-row items-center md:left md:w-auto">
           <h1 className="font-bold md:text-[36px] text-[18px] text-[#313D5B] md:text-[#6A8A44] text-center md:text-left whitespace-nowrap">
             Our Values
           </h1>
@@ -188,7 +188,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
           />
         </div>
 
-        <div className="right flex flex-row w-full md:w-auto gap-[10px] md:gap-[40px] md:flex-1 justify-around md:justify-end mt-[10px] md:mt-0">
+        <div className=" flex flex-row w-full items-center md:right md:w-auto gap-[10px] md:gap-[40px] md:flex-1 justify-around md:justify-end mt-[10px] md:mt-0">
           {VALUES.map(({ src, label }) => (
             <div
               key={label}

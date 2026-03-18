@@ -24,7 +24,6 @@ export default function Register() {
   });
 
   // ── Fetch wilayas on mount ─────────────────────────────────────────────────
-// In your useEffect, cache in sessionStorage so it only fetches once per browser session
 useEffect(() => {
   const cached = sessionStorage.getItem("caa_wilayas");
   if (cached) {
@@ -116,7 +115,7 @@ useEffect(() => {
       <div className="w-full max-w-7xl flex justify-between absolute top-4 md:top-8 items-center px-6 md:px-12">
         <Image src="/images/register/CAA.png" alt="CAA Logo" width={140} height={60} priority className="w-28 md:w-36" />
         {step < 4 && (
-          <Link href="/" className="relative flex items-center justify-center group h-12 w-24">
+          <Link href="/" className="relative flex items-center justify-center group h-12 w-24 ">
             <span className="relative z-10 text-xl font-bold text-[#2D3648] group-hover:text-[#7AA262] transition-colors">Home</span>
             <div className="absolute -bottom-1 z-0 transition-transform duration-300 group-hover:translate-x-2">
               <Image src="/images/register/arrow.png" alt="arrow" width={80} height={40} className="w-20 h-auto" />

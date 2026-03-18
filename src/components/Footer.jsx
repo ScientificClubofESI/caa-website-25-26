@@ -63,7 +63,7 @@ export default function Footer() {
   return (
     <>
     <style>{globeSpinStyles}</style>
-    <footer id="contact" className=" p-9 md:p-24 mt-10  items-start  h-full bg-secondary-950/83 bg-[url('/paperTexture.jpg')] bg-blend-multiply bg-cover">
+    <footer id="contact" className=" max-w-screen p-9 md:p-24 mt-10  items-start  h-full bg-secondary-950/83 bg-[url('/paperTexture.jpg')] bg-blend-multiply bg-cover">
       <div className=" text-xl flex-col   md:flex-row flex justify-between items-start gap-14 text-white-light  w-full h-full  font-bold">
         <div className="flex justify-start  flex-col gap-6">
           <div className="flex flex-row items-center md:items-start md:flex-col gap-5 ">

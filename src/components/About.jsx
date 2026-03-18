@@ -58,10 +58,10 @@ function StatItem({ target, prefix, label, active }) {
   const count = useCountUp(target, active);
   return (
     <div className="flex flex-col items-center justify-center flex-1">
-      <h5 className="font-bold text-[24px] md:text-[32px] text-white leading-tight">
+      <h5 className="font-bold text-[16px] md:text-[24px] text-white leading-tight">
         {prefix}{count}
       </h5>
-      <p className="text-[12px] md:text-[18px] font-bold text-white">{label}</p>
+      <p className="text-[10px] md:text-[16px] font-normal text-white">{label}</p>
     </div>
   );
 }
@@ -95,7 +95,7 @@ export default function About() {
 
       <div className="first flex flex-col md:flex-row p-[32px] md:p-[48px]">
 
-        <div className="left md:w-1/2 mb-[16px] md:mb-0 flex flex-col">
+        <div className="left md:w-1/2 mb-[16px] md:mb-[0px] flex flex-col">
           <Image
             src="/images/about/flechemobile.png"
             alt="" width={142} height={60}
@@ -104,55 +104,53 @@ export default function About() {
           <Image
             src="/images/about/fleche.png"
             alt="" width={252} height={80}
-            className="hidden md:block mb-[16px] p-0 -mx-20"
+            className="hidden md:block mb-[10px] p-0 -mx-20"
           />
-          <h1 className="text-[32px] text-[var(--foreground)] font-bold text-center md:text-left md:text-[64px] mb-[16px]">
+          <h1 className="text-3xl text-[var(--foreground)] font-bold text-center md:text-left md:text-5xl mb-[20px]">
             Touring Algeria. <br />
             Sharing Knowledge.
           </h1>
-          <p className="text-[16px] text-[var(--foreground)] font-normal text-center md:text-left md:text-[20px]">
+          <p className="text-[14px] text-[var(--foreground)] font-normal text-center md:text-left md:text-lg">
             Born from a passion for learning and innovation, CSE Around Algeria is a nationwide initiative where workshops travel across Algeria to connect tech enthusiasts, creators, and future innovators.
 Through collaboration with university clubs, we aim to share knowledge, build communities, and inspire learning
           </p>
         </div>
 
    
-        <div className="pt-20 right flex justify-center items-center md:w-1/2">
-          <div className="relative w-[300px] h-[280px] md:w-[480px] md:h-[420px]">
+        <div className="pt-[2px] md:pt-[26px] right flex justify-center items-center md:w-1/2">
+          <div className="relative w-[300px] h-[180px] md:w-[480px] md:h-[300px]">
 
             <Image
-              src="/images/about/image_1_1.png"
+              src="/images/about/image_2.png"
               alt=""
               width={250} height={250}
-              className="absolute "
+              className="absolute top-0 left-0 z-1 "
               style={{
-                width: '52%', height: 'auto',
+                width: '59%', height: 'auto',
                 transform: 'rotate(-6deg)',
-                top: 0, left: 0, zIndex: 1,
+                
               }}
             />
 
             <Image
-              src="/images/about/image_1_1.png"
+              src="/images/about/image_1.png"
               alt=""
               width={250} height={250}
-              className="absolute "
+              className="absolute  top-0 left-[50%]  z-1"
               style={{
-                width: '52%', height: 'auto',
+                width: '59%', height: 'auto',
                 transform: 'rotate(6deg)',
-                top: 0, right: 0, zIndex: 1,
               }}
             />
 
             <Image
-              src="/images/about/image_1_1.png"
+              src="/images/about/image_3.png"
               alt=""
               width={300} height={300}
-              className="absolute "
+              className="absolute bottom-[-20%] md:bottom-[-20%] left-[50%] ml-[-30%] z-2"
               style={{
                 width: '62%', height: 'auto',
-                transform: 'rotate(9deg)',
-                bottom: '30%', left: '50%', marginLeft: '-31%', zIndex: 2,
+                transform: 'rotate(3deg)',
               }}
             />
 
@@ -161,13 +159,13 @@ Through collaboration with university clubs, we aim to share knowledge, build co
       </div>
 
 
-      <div ref={statsRef} className="mb-[40px] flex justify-center items-center">
-        <div className="bg-[#6A8A44] rounded-xl md:rounded-3xl flex flex-row justify-around items-center text-[11px] gap-2 md:gap-8 px-2 md:px-10 py-2 md:h-[120px]">
+      <div ref={statsRef} className="my-[40px] flex justify-center items-center">
+        <div className="bg-[#6A8A44] rounded-2xl md:rounded-4xl flex flex-row justify-around items-center gap-[6px] md:gap-8 px-[8px] md:px-8 py-[8px] md:h-[90px]">
           {STATS.map(({ target, prefix, label }, i) => (
             <Fragment key={label}>
               <StatItem target={target} prefix={prefix} label={label} active={statsActive} />
               {i < STATS.length - 1 && (
-                <div className="self-stretch w-[2px] md:w-[2px] bg-white/100 my-2 md:my-8" />
+                <div className=" w-[1px] h-[30px] md:w-[2px] md:h-[60px] bg-white/100 my-2 md:my-8" />
               )}
             </Fragment>
           ))}

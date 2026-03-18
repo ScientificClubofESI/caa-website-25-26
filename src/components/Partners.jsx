@@ -152,7 +152,7 @@ export default function Partners() {
       <h1 className="flex justify-center text-3xl md:text-5xl font-bold text-black pt-16 md:pt-30">
         Our Partners
       </h1>
-      <p className="text-center text-base md:text-lg font-medium text-[#6E7578] leading-relaxed px-6 md:px-20 py-4 md:py-8">
+      <p className="text-center text-[12px] md:text-lg font-medium text-[#6E7578] leading-relaxed px-6 md:px-20 py-4 md:py-8">
  CSE Around Algeria is made possible thanks to the collaboration of amazing university clubs across the country. <br/>
 Together, we bring workshops and learning opportunities to different wilayas, building a strong tech community and sharing <br/> knowledge with passionate learners.
       </p>

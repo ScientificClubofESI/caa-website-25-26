@@ -76,7 +76,7 @@ const rightFAQs = [
 export default function FAQ() {
   return (
     <section id="faqs">
-      <div className="max-w-screen h-full p-6 md:p-24 my-20">
+      <div className="max-w-screen h-full p-6 md:p-30 my-20">
         <div className="text-center">
           <h1 className="text-[#140C18] text-[64px] max-m:text-[40px] font-bold pb-20 max-xs:hidden">
             Frequently Asked Questions

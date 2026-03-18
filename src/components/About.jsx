@@ -91,7 +91,7 @@ export default function About() {
   }, []);
 
   return (
-    <section  id="about" className="max-w-screen p-8 md:p-12 ">
+    <section  id="about" className="max-w-screen p-4 md:p-12 ">
 
       <div className="first flex flex-col md:flex-row p-[32px] md:p-[48px]">
 
@@ -99,12 +99,12 @@ export default function About() {
           <Image
             src="/images/about/flechemobile.png"
             alt="" width={142} height={60}
-            className="md:hidden mb-[12px] -mx-20"
+            className="md:hidden mb-[12px] -mx-15"
           />
           <Image
             src="/images/about/fleche.png"
             alt="" width={252} height={80}
-            className="hidden md:block mb-[10px] p-0 -mx-20"
+            className="hidden md:block mb-[10px] p-0 -mx-30"
           />
           <h1 className="text-3xl text-[var(--foreground)] font-bold text-center md:text-left md:text-5xl mb-[20px]">
             Touring Algeria. <br />
@@ -160,7 +160,7 @@ Through collaboration with university clubs, we aim to share knowledge, build co
 
 
       <div ref={statsRef} className="my-[40px] flex justify-center items-center">
-        <div className="bg-[#6A8A44] rounded-2xl md:rounded-4xl flex flex-row justify-around items-center gap-[6px] md:gap-8 px-[8px] md:px-8 py-[8px] md:h-[90px]">
+        <div className="bg-[#6A8A44] rounded-2xl md:rounded-4xl flex flex-row justify-around items-center gap-[12px] md:gap-8 px-[12px] md:px-8 py-[8px] md:h-[90px]">
           {STATS.map(({ target, prefix, label }, i) => (
             <Fragment key={label}>
               <StatItem target={target} prefix={prefix} label={label} active={statsActive} />

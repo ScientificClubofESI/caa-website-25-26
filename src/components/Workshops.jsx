@@ -106,22 +106,22 @@ export default function Workshops() {
   const shouldScroll = workshops.length > 6;
 
   return (
-    <section id="workshops" className="w-full py-16 px-6 md:px-12 ">
+    <section id="workshops" className="w-full py-16 px-6 md:px-24 ">
       <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-16">
         
         {/* Header */}
         <div className="flex flex-col text-center gap-6 max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-black text-[#140C18] tracking-tight">
+          <h1 className="text-3xl md:text-5xl font-black text-[#140C18] tracking-tight">
             Our Workshops
           </h1>
-          <p className="text-[#3C464B] text-lg md:text-xl font-medium opacity-80">
-            CSE Around Algeria hosts a variety of tech workshops. Guided by experienced mentors and local clubs to build practical skills.
-          </p>
+          <p className="text-[#3C464B] text-[16px] md:text-xl font-medium opacity-80">
+CSE Around Algeria will host a variety of workshops in different tech fields.
+Each workshop is designed to introduce participants to practical skills, guided by experienced mentors and organized in collaboration with local clubs          </p>
         </div>
 
         {/* Desktop View */}
         <div className="hidden md:flex relative w-full bg-[#567532] p-10 gap-12 items-center min-h-[450px] shadow-2xl">
-            <img src='/arrow.png' alt="" className="absolute -top-45 -left-12 w-48 pointer-events-none" />
+            <img src='/arrow.png' alt="" className="absolute -top-45 -left-24 w-48 pointer-events-none" />
 
             {/* Left Content */}
             <div className="w-2/5 flex flex-col justify-between self-stretch">

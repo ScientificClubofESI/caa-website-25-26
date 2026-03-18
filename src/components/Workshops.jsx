@@ -7,62 +7,66 @@ const categories = [
     name: "Web Development",
     description: "Learn how modern websites are built, from basic pages to full web applications. These workshops cover front-end and back-end development.",
     workshops: [
-      { name: "Modern Web Development Bootcamp", club: "CyberNexusDz", location: "Tiaret" },
-      { name: "From HTML to React: The Front-End Developer's Journey", club: "SDG Club", location: "Setif" },
-      { name: "Build Your First Website", club: "GDG Constantine", location: "Constantine" },
-      { name: "Intro to Web Development", club: "Mecatro Scientific Club", location: "Boumerdes" },
-      { name: "Intro to Web Development", club: "New Way School", location: "Ain Defla" },
-      { name: "FastAPI Kickstart: Build Your First REST API", club: "Scientific Corner", location: "Ouargla" },
-      { name: "Web Development", club: "Tech Club", location: "Skikda" },
-      { name: "Web Development", club: "Youaim Academy", location: "Tebessa" },
-      { name: "Vibe Coding: Build Your Website Without Coding", club: "Epstimi Signum Club", location: "Tipaza" },
+      { name: "Vibe Coding: How to Build Your Own Website Without Coding", club: "Epstimi Signum Club",    location: "Tipaza"      },
+      { name: "Modern Web Development Bootcamp",                           club: "CyberNexusDz",           location: "Tiaret"      },
+      { name: "Web Developpement",                                         club: "YouAim Academy",         location: "Tebessa"     },
+      { name: "Web Developpement Basics (HTML, CSS, JS)",                  club: "Skikda I-Tech Club",     location: "Skikda"      },
+      { name: "From HTML to React: The Front-End Developer's Journey",     club: "SDG Club",               location: "Setif"       },
+      { name: "Build Your First Website",                                  club: "GDG Constantine",        location: "Constantine" },
+      { name: "Web Developpement Basics + Intro to Backend",              club: "Quanta",                 location: "Alger"       },
+      { name: "Web Développement Basics",                                  club: "CSC Blida",              location: "Blida"       },
+      { name: "L'utilisation Concrète des DSA aux Projets Quotidiens",     club: "Mecatro Scientific Club",location: "Boumerdes"   },
+      { name: "Intro to Web Development",                                  club: "Mecatro Scientific Club",location: "Boumerdes"   },
+      { name: "Intro to Web Development",                                  club: "New Way Academy",        location: "Ain Defla"   },
     ]
   },
   {
     name: "AI & Data Science",
     description: "Discover how artificial intelligence and data can be used to solve real-world problems. Fundamentals of machine learning and data analysis.",
     workshops: [
-      { name: "Introduction to AI and Data Science", club: "Atom", location: "Bouira" },
-      { name: "ML Fundamentals", club: "TechZone", location: "Setif" },
-      { name: "From Idea to Smart Automation", club: "EL Khalef Essalih", location: "Ghardaia" },
-      { name: "Work Smarter: Productivity Using AI", club: "You Think Academy", location: "Tlemcen" },
+      { name: "AI Unlocked: Introduction to Artificial Intelligence",       club: "Atom",           location: "Bouira"   },
+      { name: "ML Fundamentals",                                            club: "TechZone",       location: "Setif"    },
+      { name: "From Idea to Smart Automation: Building Your First AI Powered System", club: "EL Khalef Essalih", location: "Ghardaia" },
+      { name: "Work Smarter: How to Improve Your Productivity Using AI",   club: "YouThink",       location: "Tlemcen"  },
+      { name: "Backend",                                                    club: "Techverse",      location: "Médéa"    },
     ]
   },
   {
     name: "Programming",
     description: "Build strong foundations in coding and computational thinking. Participants will learn core programming concepts and problem-solving.",
     workshops: [
-      { name: "Introduction to Python", club: "CSI Club", location: "Tizi Ouzou" },
-      { name: "Python: From Basics to Projects", club: "Embassy School", location: "M'sila" },
-      { name: "Learn C from Scratch", club: "Lilix Consulting", location: "Alger" },
-      { name: "Learn C from Scratch", club: "Upgraderz", location: "Alger" },
-      { name: "DSA in Daily Projects", club: "Mecatro Scientific Club", location: "Boumerdes" },
+      { name: "Introduction to Python",                          club: "CSI UMMTO",              location: "Tizi Ouzou"       },
+      { name: "Introduction to Python: From Basics to Useful Projects", club: "Elec Club",       location: "M'sila"           },
+      { name: "Beginners Workshop in Programming Using Python",  club: "Scientific Corner",       location: "Ouargla"          },
+      { name: "Learn C from Scratch",                            club: "Upgraderz",               location: "Alger"            },
+      { name: "Introduction to C++",                             club: "Lilix Consulting",         location: "Alger"            },
+      { name: "Ask Better, Get Better: Prompt Engineering Guide",club: "Infinity Club",           location: "Bordj Bou Arreridj"},
     ]
   },
   {
     name: "Design",
     description: "Explore the principles of user experience and digital product design. Creating intuitive interfaces and visually appealing experiences.",
     workshops: [
-      { name: "Introduction to UI/UX", club: "Skikda I-Tech Club", location: "Skikda" },
-      { name: "Introduction to UI/UX Design", club: "All In Med", location: "Alger" },
-      { name: "Mastering UI/UX with Figma", club: "Our Voice Club", location: "Ain Témouchent" },
+      { name: "Intro UI/UX",                                   club: "Skikda I-Tech Club", location: "Skikda"        },
+      { name: "From Idea to Interface: Mastering UI/UX with Figma", club: "Our Voice Club", location: "Ain Temouchent"},
     ]
   },
   {
     name: "Networking",
     description: "Understand how computers communicate and how the internet works. Basics of computer networks and connectivity.",
     workshops: [
-      { name: "Introduction au réseau informatique", club: "Quanta", location: "Alger" },
-      { name: "Blockchain in Public Sector", club: "Elec Club", location: "Msila" },
+      { name: "Introduction au Réseau Informatique",                          club: "Quanta",   location: "Alger"  },
+      { name: "The Potential of Blockchain Use in Algeria's Public Sector",   club: "Embassy",  location: "M'sila" },
     ]
   },
   {
-    name: "Photography",
-    description: "Learn how to capture and create powerful visual content. Fundamentals of photography, storytelling, and editing.",
+    name: "Photography & Creative",
+    description: "Learn how to capture and create powerful visual content. Fundamentals of photography, filmmaking, storytelling, and editing.",
     workshops: [
-      { name: "Intro to Photography", club: "Lilix Consulting", location: "Alger" },
-      { name: "Where Ideas Find Their Voice", club: "Esperanza Club", location: "Jijel" },
-      { name: "Filmmaking for Beginners", club: "El Fikr Co Working", location: "Chlef" },
+      { name: "Filmmaking Journey: Introduction to Photography", club: "Lilix Consulting",  location: "Alger"  },
+      { name: "Filmmaking Journey: Introduction to Photography", club: "Co-working Space",  location: "Chlef"  },
+      { name: "Photographie & Photo Editing",                    club: "Rival School",      location: "Bejaia" },
+      { name: "Where Ideas Find Their Voice",                    club: "Esperanza Club",    location: "Jijel"  },
     ]
   },
 ];

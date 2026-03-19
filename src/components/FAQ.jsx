@@ -108,7 +108,7 @@ export default function FAQ() {
           {/* Right Column */}
           <div className="relative flex flex-col gap-y-4 md:gap-y-8">
             {rightFAQs.map((faq, index) => <FAQItem key={index} item={faq} />)}
-            <div className="absolute z-1 -right-20 -bottom-30 w-40 h-40 ">
+            <div className="absolute z-1 -right-20 md:-right-30 -bottom-40 w-40 h-40 ">
               <Image src="/imager.png" width={186} height={219} alt="decor" />
             </div>
           </div>

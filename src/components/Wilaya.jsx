@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+
 const WILAYAS = [
   { name: "Algiers",           image: "images/wilaya/algiers.png"       },
   { name: "Ain Temouchent",    image: "images/wilaya/aintemouchent.png" },
@@ -29,6 +30,7 @@ const WILAYAS = [
 
 const CHUNK_SIZE  = 4;
 const INTERVAL_MS = 3000;
+const FADE_MS     = 300;
 
 // ── Desktop grid constants ────────────────────────────────────────────────────
 const D_COL_W       = 247;
@@ -101,7 +103,7 @@ const PINS = [
 ];
 
 // ─── SVG tracker ──────────────────────────────────────────────────────────────
-function WilayasSVG({ activeIdx }) {
+function WilayasSVG({ activeIdx}) {
   return (
     <svg
       width="100%" height="68"
@@ -132,34 +134,36 @@ function WilayasSVG({ activeIdx }) {
         d="M11.3487 51.2657C11.3487 51.2657 105.901 32.6992 164.349 51.2657C222.797 69.8322 278.799 74.7574 324.849 56.1909C370.899 37.6244 417.493 34.6138 477.849 56.1909C538.204 77.7681 623.349 51.2657 623.349 51.2657"
         stroke="#759451" strokeWidth="2" strokeDasharray="13 13"
       />
-      {PINS.map((p, i) => {
-        const active = i === activeIdx;
-        const fill   = active ? ACTIVE_FILL   : INACTIVE_FILL;
-        const stroke = active ? ACTIVE_STROKE : INACTIVE_STROKE;
-        return (
-          <g key={p.filterId}>
-            <circle cx="10" cy="10" r="10" transform={p.circleTransform}
-              fill={fill} className="transition-all duration-0" />
-            <path fillRule="evenodd" clipRule="evenodd" d={p.outlineD}
-              stroke={stroke} strokeLinecap="round" strokeLinejoin="round"
-              strokeDasharray="4 3" className="transition-all duration-0" />
-            <g filter={`url(#${p.filterId})`}>
-              <path fillRule="evenodd" clipRule="evenodd" d={p.solidD}
-                fill={fill} className="transition-all duration-0" />
-              <path fillRule="evenodd" clipRule="evenodd" d={p.solidD}
-                stroke="#3A541C" strokeLinecap="round" strokeLinejoin="round" />
+
+
+        {PINS.map((p, i) => {
+          const active = i === activeIdx;
+          const fill   = active ? ACTIVE_FILL   : INACTIVE_FILL;
+          const stroke = active ? ACTIVE_STROKE : INACTIVE_STROKE;
+          return (
+            <g key={p.filterId}>
+              <circle cx="10" cy="10" r="10" transform={p.circleTransform} fill={fill} />
+              <path fillRule="evenodd" clipRule="evenodd" d={p.outlineD}
+                stroke={stroke} strokeLinecap="round" strokeLinejoin="round"
+                strokeDasharray="4 3" />
+              <g filter={`url(#${p.filterId})`}>
+                <path fillRule="evenodd" clipRule="evenodd" d={p.solidD} fill={fill} />
+                <path fillRule="evenodd" clipRule="evenodd" d={p.solidD}
+                  stroke="#3A541C" strokeLinecap="round" strokeLinejoin="round" />
+              </g>
             </g>
-          </g>
-        );
-      })}
+          );
+        })}
+   
     </svg>
   );
 }
 
 // ─── Label badge ──────────────────────────────────────────────────────────────
-function Label({ name, side = "left", mobile = false }) {
+function Label({ name, side = "left", mobile = false, fadeStyle }) {
   return (
     <span
+      style={fadeStyle}
       className={`
         absolute z-10
         bg-[#CCE9A8] backdrop-blur-sm text-[#3A541C] font-semibold
@@ -183,7 +187,7 @@ function Label({ name, side = "left", mobile = false }) {
 }
 
 // ─── Photo grid ───────────────────────────────────────────────────────────────
-function PhotoGrid({ photos, mobile = false }) {
+function PhotoGrid({ photos, mobile = false, fadeStyle }) {
   const [tL, bL, tR, bR] = [photos[0], photos[2], photos[1], photos[3]];
 
   const colW      = mobile ? M_COL_W       : D_COL_W;
@@ -200,14 +204,14 @@ function PhotoGrid({ photos, mobile = false }) {
       <div className="absolute left-0 flex flex-col" style={{ gap, width: colW }}>
         {tL && (
           <div className="relative flex-shrink-0" style={{ width: colW, height: leftH }}>
-            <Label name={tL.name} side="left" mobile={mobile} />
-            <img src={tL.image} alt={tL.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
+            <Label name={tL.name} side="left" mobile={mobile} fadeStyle={fadeStyle} />
+            <img src={tL.image} alt={tL.name} style={fadeStyle} className="w-full h-full object-cover shadow-lg" />
           </div>
         )}
         {bL && (
           <div className="relative flex-shrink-0" style={{ width: colW, height: leftH }}>
-            <Label name={bL.name} side="left" mobile={mobile} />
-            <img src={bL.image} alt={bL.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
+            <Label name={bL.name} side="left" mobile={mobile} fadeStyle={fadeStyle} />
+            <img src={bL.image} alt={bL.name} style={fadeStyle} className="w-full h-full object-cover shadow-lg"  />
           </div>
         )}
       </div>
@@ -216,14 +220,14 @@ function PhotoGrid({ photos, mobile = false }) {
       <div className="absolute right-0 flex flex-col" style={{ gap, width: colW, top: rightOff }}>
         {tR && (
           <div className="relative flex-shrink-0" style={{ width: colW, height: rightTopH }}>
-            <Label name={tR.name} side="right" mobile={mobile} />
-            <img src={tR.image} alt={tR.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
+            <Label name={tR.name} side="right" mobile={mobile} fadeStyle={fadeStyle} />
+            <img src={tR.image} alt={tR.name} style={fadeStyle} className="w-full h-full object-cover shadow-lg"  />
           </div>
         )}
         {bR && (
           <div className="relative flex-shrink-0" style={{ width: colW, height: rightBotH }}>
-            <Label name={bR.name} side="right" mobile={mobile} />
-            <img src={bR.image} alt={bR.name} className="w-full h-full object-cover shadow-lg" loading="lazy" />
+            <Label name={bR.name} side="right" mobile={mobile} fadeStyle={fadeStyle} />
+            <img src={bR.image} alt={bR.name} style={fadeStyle} className="w-full h-full object-cover shadow-lg" />
           </div>
         )}
       </div>
@@ -234,19 +238,31 @@ function PhotoGrid({ photos, mobile = false }) {
 // ─── Main section ─────────────────────────────────────────────────────────────
 export default function WilayasSection() {
   const [chunkIdx, setChunkIdx] = useState(0);
+  const [opacity, setOpacity] = useState(1);
   const router = useRouter();
+
   useEffect(() => {
     const t = setInterval(() => {
-      setChunkIdx((p) => (p + 1) % CHUNKS.length);
+      setOpacity(0);
+      setTimeout(() => {
+        setChunkIdx((p) => (p + 1) % CHUNKS.length);
+        setOpacity(1);
+      }, FADE_MS);
     }, INTERVAL_MS);
     return () => clearInterval(t);
   }, []);
+
+  const fadeStyle = {
+    opacity,
+    transition: `opacity ${FADE_MS}ms ease`,
+  };
 
   const mTrackerW = M_COL_W * 2 + M_GAP;
 
   return (
     <section id="wilayas" className="max-w-screen p-8 md:p-24">
 
+      {/* ── Mobile ── */}
       <div className="flex flex-col items-center gap-6 lg:hidden">
         <h2
           className="font-black leading-tight text-[#9EC274] text-center w-full"
@@ -274,17 +290,21 @@ export default function WilayasSection() {
         </p>
 
         <div className="flex flex-col items-center gap-3 py-2 overflow-visible">
-          <PhotoGrid photos={CHUNKS[chunkIdx]} mobile={true} />
+          <PhotoGrid photos={CHUNKS[chunkIdx]} mobile={true} fadeStyle={fadeStyle} />
           <div style={{ width: mTrackerW }}>
-            <WilayasSVG activeIdx={chunkIdx} />
+            <WilayasSVG activeIdx={chunkIdx}  />
           </div>
         </div>
 
-        <button onClick={() => router.push("/register")} className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
+        <button
+          onClick={() => router.push("/register")}
+          className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm"
+        >
           Register Now
         </button>
       </div>
 
+      {/* ── Desktop ── */}
       <div className="hidden lg:flex flex-nowrap items-center" style={{ gap: 132 }}>
         <div className="flex-1 min-w-[280px]">
           <h2
@@ -310,15 +330,16 @@ export default function WilayasSection() {
             Discover the wilayas where our workshops will be held, offering valuable learning experiences and engagement opportunities in your local community.
           </p>
 
-     
-          <button   onClick={() => router.push("/register")} className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm">
+          <button
+            onClick={() => router.push("/register")}
+            className="bg-[#BDE38F] hover:shadow-lg active:scale-95 text-[#140C18] font-bold text-base px-6 py-4 transition-all duration-200 shadow-sm"
+          >
             Register Now
           </button>
-   
         </div>
 
         <div className="flex flex-col gap-4 py-4">
-          <PhotoGrid photos={CHUNKS[chunkIdx]} mobile={false} />
+          <PhotoGrid photos={CHUNKS[chunkIdx]} mobile={false} fadeStyle={fadeStyle} />
           <div style={{ width: 506 }}>
             <WilayasSVG activeIdx={chunkIdx} />
           </div>

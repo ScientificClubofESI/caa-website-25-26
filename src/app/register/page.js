@@ -190,7 +190,9 @@ useEffect(() => {
                       <div>
                         <span className="text-[#2D3648] group-hover:text-black font-semibold text-lg block">{ws.title}</span>
                         {ws.location && (
-                          <span className="text-sm text-gray-400">📍 {ws.location}</span>
+                          ws.location_url
+  ? <a href={ws.location_url} target="_blank" rel="noopener noreferrer" className="text-sm text-[#7AA262] hover:underline">📍 {ws.location}</a>
+  : <span className="text-sm text-gray-800">📍 {ws.location}</span>
                         )}
                       </div>
                     </label>

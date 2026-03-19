@@ -8,8 +8,7 @@ function FAQItem({ item }) {
   return (
     <div className="w-full">
       <div 
-        onClick={() => setIsOpen(!isOpen)}
-        className={`bg-white cursor-pointer max-xs:w-79.75 xs:w-120 xl:w-150 border-2 flex flex-col p-[4px] md:p-[6px] transition-colors duration-200 ${
+        className={`bg-white max-xs:w-79.75 xs:w-120 xl:w-150 border-2 flex flex-col p-[4px] md:p-[6px] transition-colors duration-200 ${
           isOpen ? "border-[#ACD47C]" : "border-[#759451] h-21.5 max-sm:h-13"
         }`}
       >
@@ -25,17 +24,20 @@ function FAQItem({ item }) {
             }`}>
               {item.title}
             </h1>
-            <div className={`flex-shrink-0 rounded-full p-0 transition-shadow duration-200  ${
-              isOpen ? "shadow-[0px_0px_12px_2px_rgba(58,84,28,0.3)] -translate-y-2" : "shadow-[0px_0px_12px_2px_rgba(58,84,28,0.3)] "
-            }`}>
-               <Image 
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`flex-shrink-0 rounded-full p-0 cursor-pointer transition-shadow duration-200 bg-transparent border-none ${
+                isOpen ? "shadow-[0px_0px_12px_2px_rgba(58,84,28,0.3)] -translate-y-2" : "shadow-[0px_0px_12px_2px_rgba(58,84,28,0.3)]"
+              }`}
+            >
+              <Image 
                 src={isOpen ? "/up.png" : "/down.png"} 
                 width={35} 
                 height={35} 
                 alt="toggle" 
-                className="max-xs:w-5 max-xs:h-5 " 
+                className="max-xs:w-5 max-xs:h-5" 
               />
-            </div>
+            </button>
           </div>
 
           <div className={`${isOpen ? "block pt-6 max-xs:pt-3 opacity-100" : "hidden opacity-0"}`}>

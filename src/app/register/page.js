@@ -156,7 +156,7 @@ useEffect(() => {
 
             <div className="flex flex-col items-end pt-8">
               {error && <p className="text-red-500 text-sm font-bold mb-2 animate-pulse">{error}</p>}
-              <NavBtn label="Next" onClick={() => setStep(2)} disabled={!formData.wilayaId || !formData.fullName} />
+              <NavBtn label="Next" onClick={() => setStep(2)} disabled={!formData.fullName || !formData.email || !formData.phone || !formData.discordId || !formData.wilayaId} />
             </div>
           </section>
         )}

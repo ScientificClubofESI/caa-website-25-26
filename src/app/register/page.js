@@ -10,6 +10,35 @@ const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 const validatePhone = (v) => /^(?:\+213|00213|0)(5|6|7)\d{8}$/.test(v.trim().replace(/[\s\-]/g, ""));
 
 export default function Register() {
+  // ── REGISTRATIONS CLOSED ──
+  return (
+    <div
+      className="min-h-screen font-quicksand flex flex-col items-center justify-center bg-[#FBF9F7] relative px-6 md:px-16 py-4"
+      style={{ backgroundImage: "radial-gradient(circle, #00000018 1.5px, transparent 1px)", backgroundSize: "10px 10px" }}
+    >
+      <div className="w-full max-w-7xl flex justify-between absolute top-4 md:top-8 items-center px-6 md:px-12">
+        <Image src="/images/register/CAA.png" alt="CAA Logo" width={140} height={60} priority className="w-28 md:w-36" />
+        <Link href="/" className="relative flex items-center justify-center group h-12 w-24">
+          <span className="relative z-10 text-xl font-bold text-[#2D3648] group-hover:text-[#7AA262] transition-colors">Home</span>
+          <div className="absolute -bottom-1 z-0 transition-transform duration-300 group-hover:translate-x-2">
+            <Image src="/images/register/arrow.png" alt="arrow" width={80} height={40} className="w-20 h-auto" />
+          </div>
+        </Link>
+      </div>
+
+      <div className="text-center space-y-6 animate-in fade-in slide-in-from-bottom-6">
+        <h1 className="text-5xl md:text-7xl font-black text-[#1A202C]">Registrations are closed</h1>
+        <p className="text-xl text-[#2D3648] max-w-xl mx-auto leading-relaxed font-medium">
+          Stay tuned on our social media for future events!
+        </p>
+        <Link href="/" className="inline-block px-14 py-4 bg-[#7AA262] text-white font-bold rounded-xl hover:bg-[#6a8d54] transition-all transform hover:-translate-y-1 shadow-lg shadow-[#7AA262]/20">
+          Back to home
+        </Link>
+      </div>
+    </div>
+  );
+
+
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
